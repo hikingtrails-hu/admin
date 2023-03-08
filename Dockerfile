@@ -8,9 +8,11 @@ RUN apt-get update && \
 FROM base
 
 ENV NODE_ENV production
+ENV GOOGLE_APPLICATION_CREDENTIALS hikingtrails-runtime-service-account-key.json
 
 COPY --chown=node:node . /app
+
 USER node
 WORKDIR /app
 
-CMD ["dumb-init", "./node_modules/.bin/remix-serve", "build"]
+CMD ["./start.sh"]

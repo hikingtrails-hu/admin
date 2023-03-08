@@ -9,6 +9,7 @@
         "typecheck": "tsc"
     },
     "dependencies": {
+        "@google-cloud/storage": "^6.9.4",
         "@remix-run/node": "^1.14.0",
         "@remix-run/react": "^1.14.0",
         "@remix-run/serve": "^1.14.0",
@@ -19,6 +20,7 @@
     "devDependencies": {
         "@remix-run/dev": "^1.14.0",
         "@remix-run/eslint-config": "^1.14.0",
+        "@types/node": "^18.14.6",
         "@types/react": "^18.0.25",
         "@types/react-dom": "^18.0.8",
         "depcheck": "^1.4.3",

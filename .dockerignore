@@ -1,6 +1,9 @@
 .git
 .env
 
+/.tmp
 /.cache
 
 /logs
+
+hikingtrails-runtime-service-account-key.json

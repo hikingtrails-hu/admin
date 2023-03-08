@@ -1,7 +1,17 @@
-export default function Index() {
+import {storage} from "~/lib/storage";
+import {json} from "@remix-run/node";
+import {useLoaderData} from "@remix-run/react";
+
+export const loader = async () => {
+    const okt = await storage.get('trails/current/okt.json')
+    return json({okt})
+}
+
+const Index = () => {
+    const { okt } = useLoaderData()
     return (
         <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-            <h1>Admin</h1>
+            <h1>{ okt.name }</h1>
             <ul>
                 <li>
                     <a target="_blank" href="https://remix.run/tutorials/blog" rel="noreferrer">
@@ -22,3 +32,5 @@ export default function Index() {
         </div>
     )
 }
+
+export default Index

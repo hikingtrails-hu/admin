@@ -1,6 +1,9 @@
 node_modules
 
+/.tmp
 /.cache
 /build
 /public/build
 .env
+
+hikingtrails-runtime-service-account-key.json
