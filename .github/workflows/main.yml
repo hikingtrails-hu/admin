@@ -22,10 +22,6 @@ jobs:
         run: make
       - name: Verify
         run: make verify
-      - name: Install production dependencies
-        run: |
-          make production-deps
-          mv node_modules node_modules-prod
       - name: Store production dependencies
         uses: actions/upload-artifact@v3
         with:
@@ -44,18 +40,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Uses fly.io CLI
-        uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Download production dependencies
-        uses: actions/download-artifact@v3
+      - name: Parse node version
+        run: echo NODE_VERSION=`cat .nvmrc` >> $GITHUB_OUTPUT
+        id: nvm
+      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+        uses: actions/setup-node@v3
         with:
-          name: node_modules-prod
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          cache: yarn
+      - name: Install production dependencies
+        run: make production-deps
       - name: Download build output
         uses: actions/download-artifact@v3
         with:
           name: build-output
-      - name: Use production dependencies
-        run: mv node_modules-prod node_modules
+      - name: Uses fly.io CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy
         run: fly deploy --remote-only
         env:
