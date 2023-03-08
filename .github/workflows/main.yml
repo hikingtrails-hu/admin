@@ -1,0 +1,40 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Parse node version
+        run: echo NODE_VERSION=`cat .nvmrc` >> $GITHUB_OUTPUT
+        id: nvm
+      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+          cache: yarn
+      - name: Build
+        run: make
+      - name: Verify
+        run: make verify
+      - name: Install production dependencies
+        run: |
+          make production-deps
+          mv node_modules node_modules-prod
+      - name: Store production dependencies
+        uses: actions/upload-artifact@v3
+        with:
+          name: node_modules-prod
+          path: node_modules-prod
+      - name: Store build output
+        uses: actions/upload-artifact@v3
+        with:
+          name: node_modules-prod
+          path: |
+            build
+            public/build
