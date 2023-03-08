@@ -1,0 +1,5 @@
+ignores:
+  - 'isbot'
+  - '@types/react'
+  - '@types/react-dom'
+  - 'depcheck'
