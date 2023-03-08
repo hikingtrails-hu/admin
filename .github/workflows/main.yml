@@ -22,11 +22,6 @@ jobs:
         run: make
       - name: Verify
         run: make verify
-      - name: Store production dependencies
-        uses: actions/upload-artifact@v3
-        with:
-          name: node_modules-prod
-          path: node_modules-prod
       - name: Store build output
         uses: actions/upload-artifact@v3
         with:
