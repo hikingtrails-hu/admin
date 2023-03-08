@@ -38,3 +38,24 @@ jobs:
           path: |
             build
             public/build
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Uses fly.io CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Download production dependencies
+        uses: actions/download-artifact@v3
+        with:
+          name: node_modules-prod
+      - name: Download build output
+        uses: actions/download-artifact@v3
+        with:
+          name: build-output
+      - name: Use production dependencies
+        run: mv node_modules-prod node_modules
+      - name: Deploy
+        run: fly deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
