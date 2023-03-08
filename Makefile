@@ -44,3 +44,6 @@ build: node_modules
 	cp .env.development .env
 
 init: .env node_modules
+
+production-deps:
+	yarn --frozen-lockfile --production

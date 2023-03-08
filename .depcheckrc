@@ -3,3 +3,4 @@ ignores:
   - '@types/react'
   - '@types/react-dom'
   - 'depcheck'
+  - '~'
