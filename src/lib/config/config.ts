@@ -1,4 +1,4 @@
-import {getenv} from "~/server-tools/config/getenv";
+import { getenv } from '~/server-tools/config/getenv'
 
 export const config = {
     gCloud: {

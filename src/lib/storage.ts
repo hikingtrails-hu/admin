@@ -2,19 +2,15 @@ import { Bucket, Storage as CloudStorage } from '@google-cloud/storage'
 import { tmpdir } from 'os'
 import { resolve } from 'path'
 import { writeFileSync, rmSync } from 'fs'
-import {config} from "~/lib/config/config";
+import { config } from '~/lib/config/config'
 
 export class Storage {
     private readonly bucket: Bucket
 
-    constructor(
-        apiEndpoint: string,
-        projectId: string,
-        bucket: string
-    ) {
+    constructor(apiEndpoint: string, projectId: string, bucket: string) {
         const storage = new CloudStorage({
             apiEndpoint,
-            projectId
+            projectId,
         })
         this.bucket = storage.bucket(bucket)
     }
