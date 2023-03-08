@@ -34,7 +34,7 @@ jobs:
       - name: Store build output
         uses: actions/upload-artifact@v3
         with:
-          name: node_modules-prod
+          name: build-output
           path: |
             build
             public/build
