@@ -2,18 +2,21 @@ import { Bucket, Storage as CloudStorage } from '@google-cloud/storage'
 import { tmpdir } from 'os'
 import { resolve } from 'path'
 import { writeFileSync, rmSync } from 'fs'
+import {config} from "~/lib/config/config";
 
 export class Storage {
     private readonly bucket: Bucket
 
-    constructor() {
+    constructor(
+        apiEndpoint: string,
+        projectId: string,
+        bucket: string
+    ) {
         const storage = new CloudStorage({
-            apiEndpoint: '',
-            // apiEndpoint: 'http://localhost:5100',
-            projectId: '',
-            // projectId: 'dev-project',
+            apiEndpoint,
+            projectId
         })
-        this.bucket = storage.bucket('hikingtrails-db')
+        this.bucket = storage.bucket(bucket)
     }
 
     public async has(key: string): Promise<boolean> {
@@ -35,4 +38,8 @@ export class Storage {
     }
 }
 
-export const storage = new Storage()
+export const storage = new Storage(
+    config.gCloud.storageApiEndpoint,
+    config.gCloud.projectName,
+    config.gCloud.storageBucketName
+)
