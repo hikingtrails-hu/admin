@@ -1,6 +1,11 @@
 import { storage } from '~/lib/storage'
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
+import CardProfile from "~/components/Cards/CardProfile";
+import Login from "~/views/auth/Login";
+import Navbar from "~/components/Navbars/AuthNavbar";
+import FooterSmall from "~/components/Footers/FooterSmall";
+import registerBg from '~/assets/img/register_bg_2.png'
 
 export const loader = async () => {
     // const okt = await storage.get('trails/current/okt.json')
@@ -10,26 +15,23 @@ export const loader = async () => {
 const Index = () => {
     const { okt } = useLoaderData()
     return (
-        <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
-            <h1>{okt.name}</h1>
-            <ul>
-                <li>
-                    <a target="_blank" href="https://remix.run/tutorials/blog" rel="noreferrer">
-                        15m Quickstart Blog Tutorial
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="https://remix.run/tutorials/jokes" rel="noreferrer">
-                        Deep Dive Jokes App Tutorial
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-                        Remix Docs
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <>
+            <Navbar transparent />
+            <main>
+                <section className="relative w-full h-full py-40 min-h-screen">
+                    <div
+                        className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
+                        style={{
+                            backgroundImage:
+                                "url(" + registerBg + ")",
+                        }}
+                    ></div>
+                    <Login></Login>
+                    <FooterSmall absolute />
+                </section>
+            </main>
+        </>
+
     )
 }
 
