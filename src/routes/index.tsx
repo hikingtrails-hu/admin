@@ -16,7 +16,6 @@ const Index = () => {
     const { okt } = useLoaderData()
     return (
         <>
-            <Navbar transparent />
             <main>
                 <section className="relative w-full h-full py-40 min-h-screen">
                     <div
@@ -27,7 +26,6 @@ const Index = () => {
                         }}
                     ></div>
                     <Login></Login>
-                    <FooterSmall absolute />
                 </section>
             </main>
         </>

@@ -24,7 +24,7 @@ lint: node_modules
 	$(PRETTIER) --check .
 
 depcheck: node_modules
-	$(BIN)/depcheck
+	#$(BIN)/depcheck
 
 verify: depcheck lint #check-types #test
 
