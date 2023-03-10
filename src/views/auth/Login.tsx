@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form} from '@remix-run/react'
+import { Form } from '@remix-run/react'
 
 export default function Login() {
     return (
@@ -17,7 +17,7 @@ export default function Login() {
                                 <hr className="mt-6 border-b-1 border-blueGray-300" />
                             </div>
                             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                <Form method="post" action='/login'>
+                                <Form method="post" action="/login">
                                     <div className="relative w-full mb-3">
                                         <label
                                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"

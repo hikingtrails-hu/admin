@@ -1,8 +1,8 @@
-import { installGlobals } from '@remix-run/node';
-installGlobals();
+import { installGlobals } from '@remix-run/node'
+installGlobals()
 
 async function main() {
-    console.log('do stuff');
+    console.log('do stuff')
 }
 
 main()
