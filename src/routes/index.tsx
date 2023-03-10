@@ -3,8 +3,8 @@ import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 
 export const loader = async () => {
-    const okt = await storage.get('trails/current/okt.json')
-    return json({ okt })
+    // const okt = await storage.get('trails/current/okt.json')
+    return json({ okt: {name: 'Test'}})
 }
 
 const Index = () => {
