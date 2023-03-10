@@ -37,8 +37,11 @@ check-types: node_modules
 dev: node_modules
 	$(REMIX) dev
 
+#while true; do $(REMIX) dev; echo 1; done
+
 build: node_modules
 	NODE_ENV=production $(REMIX) build
+	$(BIN)/gulp licenses
 
 .env: .env.development
 	cp .env.development .env
