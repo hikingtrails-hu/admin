@@ -2,7 +2,6 @@
 .env
 
 /.tmp
-/.cache
 
 /logs
 

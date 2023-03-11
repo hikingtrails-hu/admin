@@ -1,3 +1,4 @@
+import * as scripts from './cli'
 import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
 import stylesheet from '~/tailwind.css'
@@ -26,3 +27,5 @@ export default function App() {
         </html>
     )
 }
+
+export const { cli } = scripts
