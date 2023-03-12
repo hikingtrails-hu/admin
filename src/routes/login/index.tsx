@@ -19,7 +19,6 @@ export const action = async (args: ActionArgs) => {
         throw new Error('Bad credentials')
     }
     const user = await storage.get<User>(`admin-db/user/email/${email}/data`)
-    console.log({ user, password })
     if (!(await verify(user.encodedPassword, password))) {
         throw new Error('Bad credentials')
     }
