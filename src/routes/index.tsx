@@ -16,7 +16,7 @@ export const loader = async (args: LoaderArgs) => {
     if (!tokenStr) {
         return redirect('/login')
     }
-    const token = verify(tokenStr, config.secret)
+    const token = verify(tokenStr, config.jwtSecret)
     const { userId } = token
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
     return json({ okt: { name: 'Test' }, user: { id, email } })

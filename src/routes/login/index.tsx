@@ -23,7 +23,7 @@ export const action = async (args: ActionArgs) => {
     if (!(await verify(user.encodedPassword, password))) {
         throw new Error('Bad credentials')
     }
-    const token = sign({ userId: user.id }, config.secret)
+    const token = sign({ userId: user.id }, config.jwtSecret)
     return redirect('/', {
         headers: {
             'Set-Cookie': serialize('token', token, {

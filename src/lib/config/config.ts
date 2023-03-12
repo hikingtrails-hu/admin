@@ -7,5 +7,5 @@ export const config = {
         storageBucketName: 'hikingtrails-db',
         slowQueueTopic: 'slow-queue',
     },
-    secret: getenv('SECRET'),
+    jwtSecret: getenv('JWT_SECRET'),
 }
