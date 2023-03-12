@@ -11,6 +11,7 @@ ENV NODE_ENV production
 ENV GOOGLE_APPLICATION_CREDENTIALS hikingtrails-runtime-service-account-key.json
 
 COPY --chown=node:node . /app
+COPY --chown=node:node ./.cache /app/cache
 
 USER node
 WORKDIR /app
