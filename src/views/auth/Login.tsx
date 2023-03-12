@@ -17,7 +17,7 @@ export default function Login() {
                                 <hr className="mt-6 border-b-1 border-blueGray-300" />
                             </div>
                             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                                <Form method="post" action="/login">
+                                <Form method="post">
                                     <div className="relative w-full mb-3">
                                         <label
                                             className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -26,6 +26,7 @@ export default function Login() {
                                             Email
                                         </label>
                                         <input
+                                            name="email"
                                             type="email"
                                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                             placeholder="Email"
@@ -40,6 +41,7 @@ export default function Login() {
                                             Password
                                         </label>
                                         <input
+                                            name="password"
                                             type="password"
                                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                             placeholder="Password"
