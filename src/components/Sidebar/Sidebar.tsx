@@ -2,8 +2,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import NotificationDropdown from 'components/Dropdowns/NotificationDropdown'
-import UserDropdown from 'components/Dropdowns/UserDropdown'
+import NotificationDropdown from '~/components/Dropdowns/NotificationDropdown'
+import UserDropdown from '~/components/Dropdowns/UserDropdown'
 
 export default function Sidebar() {
     const [collapseShow, setCollapseShow] = React.useState('hidden')
@@ -17,7 +17,7 @@ export default function Sidebar() {
                         type="button"
                         onClick={() => setCollapseShow('bg-white m-2 py-3 px-6')}
                     >
-                        <i className="fas fa-bars"></i>
+                        Pina
                     </button>
                     {/* Brand */}
                     <Link
@@ -87,19 +87,21 @@ export default function Sidebar() {
                             <li className="items-center">
                                 <Link
                                     className={
-                                        'text-xs uppercase py-3 font-bold block ' +
-                                        (window.location.href.indexOf('/admin/dashboard') !== -1
-                                            ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                                            : 'text-blueGray-700 hover:text-blueGray-500')
+                                        'text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500'
+                                        // 'text-xs uppercase py-3 font-bold block ' +
+                                        // (window.location.href.indexOf('/admin/dashboard') !== -1
+                                        //     ? 'text-lightBlue-500 hover:text-lightBlue-600'
+                                        //     : 'text-blueGray-700 hover:text-blueGray-500')
                                     }
                                     to="/admin/dashboard"
                                 >
                                     <i
                                         className={
-                                            'fas fa-tv mr-2 text-sm ' +
-                                            (window.location.href.indexOf('/admin/dashboard') !== -1
-                                                ? 'opacity-75'
-                                                : 'text-blueGray-300')
+                                            'fas fa-tv mr-2 text-sm text-blueGray-300'
+                                            // 'fas fa-tv mr-2 text-sm ' +
+                                            // (window.location.href.indexOf('/admin/dashboard') !== -1
+                                            //     ? 'opacity-75'
+                                            //     : 'text-blueGray-300')
                                         }
                                     ></i>{' '}
                                     Dashboard
@@ -109,68 +111,24 @@ export default function Sidebar() {
                             <li className="items-center">
                                 <Link
                                     className={
-                                        'text-xs uppercase py-3 font-bold block ' +
-                                        (window.location.href.indexOf('/admin/settings') !== -1
-                                            ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                                            : 'text-blueGray-700 hover:text-blueGray-500')
+                                        'text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500'
+                                        // 'text-xs uppercase py-3 font-bold block ' +
+                                        // (window.location.href.indexOf('/admin/settings') !== -1
+                                        //     ? 'text-lightBlue-500 hover:text-lightBlue-600'
+                                        //     : 'text-blueGray-700 hover:text-blueGray-500')
                                     }
                                     to="/admin/settings"
                                 >
                                     <i
                                         className={
-                                            'fas fa-tools mr-2 text-sm ' +
-                                            (window.location.href.indexOf('/admin/settings') !== -1
-                                                ? 'opacity-75'
-                                                : 'text-blueGray-300')
+                                            'fas fa-tools mr-2 text-sm text-blueGray-300'
                                         }
                                     ></i>{' '}
                                     Settings
                                 </Link>
                             </li>
 
-                            <li className="items-center">
-                                <Link
-                                    className={
-                                        'text-xs uppercase py-3 font-bold block ' +
-                                        (window.location.href.indexOf('/admin/tables') !== -1
-                                            ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                                            : 'text-blueGray-700 hover:text-blueGray-500')
-                                    }
-                                    to="/admin/tables"
-                                >
-                                    <i
-                                        className={
-                                            'fas fa-table mr-2 text-sm ' +
-                                            (window.location.href.indexOf('/admin/tables') !== -1
-                                                ? 'opacity-75'
-                                                : 'text-blueGray-300')
-                                        }
-                                    ></i>{' '}
-                                    Tables
-                                </Link>
-                            </li>
 
-                            <li className="items-center">
-                                <Link
-                                    className={
-                                        'text-xs uppercase py-3 font-bold block ' +
-                                        (window.location.href.indexOf('/admin/maps') !== -1
-                                            ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                                            : 'text-blueGray-700 hover:text-blueGray-500')
-                                    }
-                                    to="/admin/maps"
-                                >
-                                    <i
-                                        className={
-                                            'fas fa-map-marked mr-2 text-sm ' +
-                                            (window.location.href.indexOf('/admin/maps') !== -1
-                                                ? 'opacity-75'
-                                                : 'text-blueGray-300')
-                                        }
-                                    ></i>{' '}
-                                    Maps
-                                </Link>
-                            </li>
                         </ul>
 
                         {/* Divider */}

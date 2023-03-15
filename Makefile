@@ -36,6 +36,8 @@ check-types: node_modules
 
 dev: node_modules
 	$(REMIX) dev
+#	trap exit SIGINT SIGTERM
+#	while true; do $(REMIX) dev; sleep 1; done
 
 #while true; do $(REMIX) dev; echo 1; done
 

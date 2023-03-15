@@ -2,7 +2,7 @@ import React from 'react'
 
 // components
 
-import MapExample from 'components/Maps/MapExample'
+import MapExample from '~/components/Maps/MapExample'
 
 export default function Maps() {
     return (

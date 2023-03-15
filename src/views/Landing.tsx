@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 // components
 
-import Navbar from 'components/Navbars/AuthNavbar'
-import Footer from 'components/Footers/Footer'
+import Navbar from '~/components/Navbars/AuthNavbar'
+import Footer from '~/components/Footers/Footer'
 
 export default function Landing() {
     return (

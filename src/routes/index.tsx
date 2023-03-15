@@ -1,23 +1,23 @@
-import { storage } from '~/lib/storage'
-import { json, LoaderArgs, redirect } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
-import CardProfile from '~/components/Cards/CardProfile'
-import Login from '~/views/auth/Login'
-import Navbar from '~/components/Navbars/AuthNavbar'
-import FooterSmall from '~/components/Footers/FooterSmall'
-import registerBg from '~/assets/img/register_bg_2.png'
-import { parse } from 'cookie'
-import { verify } from 'jsonwebtoken'
-import { config } from '~/lib/config/config'
-import { User } from '~/user/user'
+import {storage} from '~/lib/storage'
+import {json, LoaderArgs, redirect} from '@remix-run/node'
+import {useLoaderData} from '@remix-run/react'
+import {parse} from 'cookie'
+import {verify} from 'jsonwebtoken'
+import {config} from '~/lib/config/config'
+import {User} from '~/user/user'
+import {Redirect, Route, Switch} from "react-router-dom";
+import React from "react";
+import Sidebar from "~/components/Sidebar/Sidebar";
+import HeaderStats from "~/components/Headers/HeaderStats";
+import AdminNavbar from "~/components/Navbars/AdminNavbar";
+import FooterAdmin from "~/components/Footers/FooterAdmin";
 
 export const loader = async (args: LoaderArgs) => {
-    const tokenStr = parse(args.request.headers.get('cookie') ?? '').token
-    if (!tokenStr) {
+    const token = parse(args.request.headers.get('cookie') ?? '').token
+    if (!token) {
         return redirect('/login')
     }
-    const token = verify(tokenStr, config.jwtSecret)
-    const { userId } = token
+    const { userId } = verify(token, config.jwtSecret)
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
     return json({ okt: { name: 'Test' }, user: { id, email } })
 }
@@ -26,11 +26,22 @@ const Index = () => {
     const { user } = useLoaderData()
     return (
         <>
-            <main>
-                <section className="relative w-full h-full py-40 min-h-screen">
-                    {JSON.stringify(user)}
-                </section>
-            </main>
+            <Sidebar />
+            <div className="relative md:ml-64 bg-blueGray-100">
+                <AdminNavbar />
+                {/* Header */}
+                <HeaderStats />
+                <div className="px-4 md:px-10 mx-auto w-full -m-24">
+                    {/*<Switch>*/}
+                    {/*    <Route path="/admin/dashboard" exact component={Dashboard} />*/}
+                    {/*    <Route path="/admin/maps" exact component={Maps} />*/}
+                    {/*    <Route path="/admin/settings" exact component={Settings} />*/}
+                    {/*    <Route path="/admin/tables" exact component={Tables} />*/}
+                    {/*    <Redirect from="/admin" to="/admin/dashboard" />*/}
+                    {/*</Switch>*/}
+                    <FooterAdmin />
+                </div>
+            </div>
         </>
     )
 }
