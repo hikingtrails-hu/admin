@@ -1,5 +1,5 @@
 import {storage} from '~/lib/storage'
-import {json, LoaderArgs, redirect} from '@remix-run/node'
+import {json, LinksFunction, LoaderArgs, redirect} from '@remix-run/node'
 import {useLoaderData} from '@remix-run/react'
 import {parse} from 'cookie'
 import {verify} from 'jsonwebtoken'
@@ -11,6 +11,7 @@ import Sidebar from "~/components/Sidebar/Sidebar";
 import HeaderStats from "~/components/Headers/HeaderStats";
 import AdminNavbar from "~/components/Navbars/AdminNavbar";
 import FooterAdmin from "~/components/Footers/FooterAdmin";
+import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
 
 export const loader = async (args: LoaderArgs) => {
     const token = parse(args.request.headers.get('cookie') ?? '').token
@@ -22,12 +23,15 @@ export const loader = async (args: LoaderArgs) => {
     return json({ okt: { name: 'Test' }, user: { id, email } })
 }
 
+export const links: LinksFunction = () => [
+    { rel: 'stylesheet', href: fontAwesomeCss }
+]
+
 const Index = () => {
     const { user } = useLoaderData()
     return (
         <>
-            <Sidebar />
-            <div className="relative md:ml-64 bg-blueGray-100">
+            <div className="relative bg-blueGray-100">
                 <AdminNavbar />
                 {/* Header */}
                 <HeaderStats />
