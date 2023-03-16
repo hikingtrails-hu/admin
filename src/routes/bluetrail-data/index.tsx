@@ -12,6 +12,8 @@ import HeaderStats from "~/components/Headers/HeaderStats";
 import AdminNavbar from "~/components/Navbars/AdminNavbar";
 import FooterAdmin from "~/components/Footers/FooterAdmin";
 import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
+import {blueTrailKeys} from "~/core/hbt/blue-trail-setup";
+import {Trail} from "~/core/types/types";
 
 export const loader = async (args: LoaderArgs) => {
     const token = parse(args.request.headers.get('cookie') ?? '').token
@@ -25,8 +27,11 @@ export const loader = async (args: LoaderArgs) => {
     if (!await storage.has(`admin-db/user/id/${userId}/data`)) {
         return redirect('/login')
     }
+    const trails = await Promise.all(blueTrailKeys.map(
+        key => storage.get<Trail>(`trails/current/${key}.json`)
+    ))
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
-    return json({ okt: { name: 'Test' }, user: { id, email } })
+    return json({ trails, user: { id, email } })
 }
 
 export const links: LinksFunction = () => [
@@ -34,7 +39,7 @@ export const links: LinksFunction = () => [
 ]
 
 const Index = () => {
-    const { user } = useLoaderData()
+    const { user, trails } = useLoaderData<typeof loader>()
     return (
         <>
             <div className="relative bg-blueGray-100">
@@ -43,7 +48,7 @@ const Index = () => {
                 <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12">
                     <div className="flex flex-wrap">
                         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                            x
+                            {trails[0].name}
                         </div>
                         <div className="w-full xl:w-4/12 px-4">
                             b
