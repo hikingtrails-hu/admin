@@ -5,8 +5,7 @@ import {parse} from 'cookie'
 import {verify} from 'jsonwebtoken'
 import {config} from '~/lib/config/config'
 import {User} from '~/user/user'
-import {Redirect, Route, Switch} from "react-router-dom";
-import React from "react";
+import React, {Suspense, lazy}from "react";
 import Sidebar from "~/components/Sidebar/Sidebar";
 import HeaderStats from "~/components/Headers/HeaderStats";
 import AdminNavbar from "~/components/Navbars/AdminNavbar";
@@ -14,6 +13,10 @@ import FooterAdmin from "~/components/Footers/FooterAdmin";
 import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
 import {blueTrailKeys} from "~/core/hbt/blue-trail-setup";
 import {Trail} from "~/core/types/types";
+import {Map} from "~/components/map/Map.client";
+import {ClientOnly} from "remix-utils";
+// import {ClientOnly} from "~/components/map/ClientOnly";
+// import {Map} from "~/components/map/Map";
 
 export const loader = async (args: LoaderArgs) => {
     const token = parse(args.request.headers.get('cookie') ?? '').token
@@ -37,7 +40,6 @@ export const loader = async (args: LoaderArgs) => {
 export const links: LinksFunction = () => [
     { rel: 'stylesheet', href: fontAwesomeCss }
 ]
-
 const Index = () => {
     const { user, trails } = useLoaderData<typeof loader>()
     return (
@@ -48,7 +50,17 @@ const Index = () => {
                 <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12">
                     <div className="flex flex-wrap">
                         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                            {trails[0].name}
+                            <ClientOnly
+                                fallback={
+                                    <div
+                                        id="skeleton"
+                                        style={{ height: '400px', background: "#d1d1d1" }}
+                                    />
+                                }
+                            >
+                                {() => <Map height='400px' />}
+                            </ClientOnly>
+
                         </div>
                         <div className="w-full xl:w-4/12 px-4">
                             b

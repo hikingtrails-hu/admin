@@ -1,9 +1,15 @@
 import * as scripts from './cli'
 import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
-import stylesheet from '~/tailwind.css'
+import tailwind from '~/tailwind.css'
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: stylesheet }]
+export const links: LinksFunction = () => [
+    { rel: 'stylesheet', href: tailwind },
+    {
+        rel: "stylesheet",
+        href: "https://unpkg.com/leaflet@1.8.0/dist/leaflet.css",
+    }
+]
 
 export const meta: MetaFunction = () => ({
     charset: 'utf-8',
