@@ -34,6 +34,7 @@ export const loader = async (args: LoaderArgs) => {
         key => storage.get<Trail>(`trails/current/${key}.json`)
     ))
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
+    console.log(trails)
     return json({ trails, user: { id, email } })
 }
 
@@ -63,7 +64,11 @@ const Index = () => {
 
                         </div>
                         <div className="w-full xl:w-4/12 px-4">
-                            b
+                            <ul>
+                                {trails.map(trail =>
+                                    <li key={trail.id}><h2>{trail.name}</h2></li>
+                                )}
+                            </ul>
                         </div>
                     </div>
                 </div>
