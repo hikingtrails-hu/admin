@@ -54,7 +54,7 @@ const Index = () => {
                                 fallback={
                                     <div
                                         id="skeleton"
-                                        style={{ height: '400px', background: "#d1d1d1" }}
+                                        className='h-screen bg-blueGray-200'
                                     />
                                 }
                             >

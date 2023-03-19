@@ -5,7 +5,7 @@ export function Map({ height }: { height: string }) {
     const position: LatLngTuple = [51.505, -0.09];
 
     return (
-        <div style={{ height }}>
+        <div className='h-screen pb-8'>
             <MapContainer
                 style={{
                     height: "100%",
