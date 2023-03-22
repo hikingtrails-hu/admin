@@ -6,9 +6,9 @@ import tailwind from '~/tailwind.css'
 export const links: LinksFunction = () => [
     { rel: 'stylesheet', href: tailwind },
     {
-        rel: "stylesheet",
-        href: "https://unpkg.com/leaflet@1.8.0/dist/leaflet.css",
-    }
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/leaflet@1.8.0/dist/leaflet.css',
+    },
 ]
 
 export const meta: MetaFunction = () => ({

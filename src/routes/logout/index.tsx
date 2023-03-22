@@ -17,7 +17,7 @@ export const action = async (args: ActionArgs) => {
                 path: '/',
                 httpOnly: true,
                 secure: true,
-                sameSite: 'strict'
+                sameSite: 'strict',
             }),
         },
     })

@@ -1,16 +1,16 @@
-import {storage} from '~/lib/storage'
-import {json, LinksFunction, LoaderArgs, redirect} from '@remix-run/node'
-import {useLoaderData} from '@remix-run/react'
-import {parse} from 'cookie'
-import {verify} from 'jsonwebtoken'
-import {config} from '~/lib/config/config'
-import {User} from '~/user/user'
-import {Redirect, Route, Switch} from "react-router-dom";
-import React from "react";
-import Sidebar from "~/components/Sidebar/Sidebar";
-import HeaderStats from "~/components/Headers/HeaderStats";
-import AdminNavbar from "~/components/Navbars/AdminNavbar";
-import FooterAdmin from "~/components/Footers/FooterAdmin";
+import { storage } from '~/lib/storage'
+import { json, LinksFunction, LoaderArgs, redirect } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
+import { parse } from 'cookie'
+import { verify } from 'jsonwebtoken'
+import { config } from '~/lib/config/config'
+import { User } from '~/user/user'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import React from 'react'
+import Sidebar from '~/components/Sidebar/Sidebar'
+import HeaderStats from '~/components/Headers/HeaderStats'
+import AdminNavbar from '~/components/Navbars/AdminNavbar'
+import FooterAdmin from '~/components/Footers/FooterAdmin'
 import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
 
 export const loader = async (args: LoaderArgs) => {
@@ -22,16 +22,14 @@ export const loader = async (args: LoaderArgs) => {
     if (!userId) {
         return redirect('/login')
     }
-    if (!await storage.has(`admin-db/user/id/${userId}/data`)) {
+    if (!(await storage.has(`admin-db/user/id/${userId}/data`))) {
         return redirect('/login')
     }
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
     return json({ okt: { name: 'Test' }, user: { id, email } })
 }
 
-export const links: LinksFunction = () => [
-    { rel: 'stylesheet', href: fontAwesomeCss }
-]
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: fontAwesomeCss }]
 
 const Index = () => {
     const { user } = useLoaderData()

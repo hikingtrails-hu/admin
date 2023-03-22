@@ -120,15 +120,11 @@ export default function Sidebar() {
                                     to="/admin/settings"
                                 >
                                     <i
-                                        className={
-                                            'fas fa-tools mr-2 text-sm text-blueGray-300'
-                                        }
+                                        className={'fas fa-tools mr-2 text-sm text-blueGray-300'}
                                     ></i>{' '}
                                     Settings
                                 </Link>
                             </li>
-
-
                         </ul>
 
                         {/* Divider */}
