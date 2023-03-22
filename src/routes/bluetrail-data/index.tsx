@@ -34,7 +34,6 @@ export const loader = async (args: LoaderArgs) => {
         key => storage.get<Trail>(`trails/current/${key}.json`)
     ))
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
-    console.log(trails)
     return json({ trails, user: { id, email } })
 }
 
@@ -59,7 +58,7 @@ const Index = () => {
                                     />
                                 }
                             >
-                                {() => <Map height='400px' />}
+                                {() => <Map trails={trails} />}
                             </ClientOnly>
 
                         </div>
