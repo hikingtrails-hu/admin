@@ -8,6 +8,7 @@ const UserDropdown = () => {
     const btnDropdownRef = React.createRef()
     const popoverDropdownRef = React.createRef()
     const openDropdownPopover = () => {
+        console.log(666)
         createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
             placement: 'bottom-start',
         })
@@ -23,6 +24,7 @@ const UserDropdown = () => {
                 href="#pablo"
                 ref={btnDropdownRef}
                 onClick={(e) => {
+                    console.log(123)
                     e.preventDefault()
                     dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover()
                 }}

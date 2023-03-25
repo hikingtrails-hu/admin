@@ -2,6 +2,7 @@ import * as scripts from './cli'
 import type { LinksFunction, MetaFunction } from '@remix-run/node'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
 import tailwind from '~/tailwind.css'
+import fontAwesomeCss from "@fortawesome/fontawesome-free/css/all.min.css";
 
 export const links: LinksFunction = () => [
     { rel: 'stylesheet', href: tailwind },
@@ -9,6 +10,7 @@ export const links: LinksFunction = () => [
         rel: 'stylesheet',
         href: 'https://unpkg.com/leaflet@1.8.0/dist/leaflet.css',
     },
+    { rel: 'stylesheet', href: fontAwesomeCss }
 ]
 
 export const meta: MetaFunction = () => ({

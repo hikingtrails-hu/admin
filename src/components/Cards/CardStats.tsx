@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export default function CardStats({
     statSubtitle,
     statTitle,
-    statArrow,
+    statIcon,
     statPercent,
     statPercentColor,
     statDescripiron,
@@ -39,14 +39,10 @@ export default function CardStats({
                         <span className={statPercentColor + ' mr-2'}>
                             <i
                                 className={
-                                    statArrow === 'up'
-                                        ? 'fas fa-arrow-up'
-                                        : statArrow === 'down'
-                                        ? 'fas fa-arrow-down'
-                                        : ''
+                                    statIcon
                                 }
                             ></i>{' '}
-                            {statPercent}%
+                            {statPercent}
                         </span>
                         <span className="whitespace-nowrap">{statDescripiron}</span>
                     </p>
@@ -59,7 +55,7 @@ export default function CardStats({
 CardStats.defaultProps = {
     statSubtitle: 'Traffic',
     statTitle: '350,897',
-    statArrow: 'up',
+    statIcon: 'fas fa-arrow-up',
     statPercent: '3.48',
     statPercentColor: 'text-emerald-500',
     statDescripiron: 'Since last month',
@@ -70,7 +66,7 @@ CardStats.defaultProps = {
 CardStats.propTypes = {
     statSubtitle: PropTypes.string,
     statTitle: PropTypes.string,
-    statArrow: PropTypes.oneOf(['up', 'down']),
+    statIcon: PropTypes.string,
     statPercent: PropTypes.string,
     // can be any of the text color utilities
     // from tailwindcss

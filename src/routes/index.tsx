@@ -13,7 +13,7 @@ import FooterAdmin from '~/components/Footers/FooterAdmin'
 import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
 
 export const loader = async (args: LoaderArgs) => {
-    const token = parse(args.request.headers.get('cookie') ?? '').token
+    const { token } = parse(args.request.headers.get('cookie') ?? '')
     if (!token) {
         return redirect('/login')
     }
@@ -25,10 +25,9 @@ export const loader = async (args: LoaderArgs) => {
         return redirect('/login')
     }
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
-    return json({ okt: { name: 'Test' }, user: { id, email } })
+    return json({ user: { id, email } })
 }
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: fontAwesomeCss }]
 
 const Index = () => {
     const { user } = useLoaderData()
