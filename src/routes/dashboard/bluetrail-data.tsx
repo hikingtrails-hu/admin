@@ -45,16 +45,14 @@ const BluetrailData = () => {
     return <>
         <div className="w-full lg:w-8/12 px-4">
             <div className='h-screen pb-8'>
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-full">
-                    <div className="rounded bg-white mb-0 overflow-hidden h-full">
-                        <ClientOnly
-                            fallback={
-                                <div id="skeleton" className="h-screen bg-blueGray-200" />
-                            }
-                        >
-                            {() => <Map trails={trails} />}
-                        </ClientOnly>
-                    </div>
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg overflow-hidden bg-blueGray-100 border-0 h-full">
+                    <ClientOnly
+                        fallback={
+                            <div id="skeleton" className="h-screen bg-blueGray-200" />
+                        }
+                    >
+                        {() => <Map trails={trails} />}
+                    </ClientOnly>
                 </div>
             </div>
         </div>
