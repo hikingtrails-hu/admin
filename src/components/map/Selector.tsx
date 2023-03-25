@@ -27,21 +27,21 @@ export const TrailSelector = (props: { trail: Trail }) => {
                     <h3 className='p-4 text-blueGray-600  p-4 block w-full text-left'>
                         {i+1}. {checkpoint.name}
                     </h3>
-                    <ul className='bg-white'>
+                    <ul className='bg-white py-2'>
                         {checkpoint.locations.map((location, j) => (
                             <li key={j}>
                                 <button
-                                    className='p-4 text-blueGray-600 p-4 block w-full text-left relative'
+                                    className='p-4 text-blueGray-600 px-4 py-2 block w-full text-left relative'
                                     onClick={() => {
                                         console.log(123)
                                     }}
                                 >
-                                    <span className='block mr-4'>
+                                    <span className='border-l border-solid block pl-2 mr-4'>
                                     {location.description}
 
                                     </span>
-                                    <span className='absolute right-4 top-4'>
-                    <i className='fa-solid fa-bullseye'/>
+                                    <span className='absolute right-4 top-2'>
+                    <i className='fa-solid fa-location-crosshairs'/>
                 </span>
                                 </button>
                             </li>
