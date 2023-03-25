@@ -18,7 +18,7 @@ export default function Sidebar() {
                     </button>
                     <Link
                         className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                        to="/"
+                        to="/dashboard/main"
                     >
                         Hikingtrails HU Admin
                     </Link>
@@ -27,7 +27,6 @@ export default function Sidebar() {
                             <UserDropdown />
                         </li>
                     </ul>
-                    {/* Collapse */}
                     <div
                         className={
                             'md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded ' +
@@ -39,7 +38,7 @@ export default function Sidebar() {
                                 <div className="w-6/12">
                                     <Link
                                         className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                                        to="/"
+                                        to="/dashboard/main"
                                     >
                                         Hikingtrails HU Admin
                                     </Link>
@@ -50,7 +49,7 @@ export default function Sidebar() {
                                         className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
                                         onClick={() => setCollapseShow('hidden')}
                                     >
-                                        <i className="fas fa-times"></i>
+                                        <i className="fas fa-times" />
                                     </button>
                                 </div>
                             </div>
@@ -65,24 +64,10 @@ export default function Sidebar() {
                         <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                             <li className="items-center">
                                 <Link
-                                    className={
-                                        'text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500'
-                                        // 'text-xs uppercase py-3 font-bold block ' +
-                                        // (window.location.href.indexOf('/admin/dashboard') !== -1
-                                        //     ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                                        //     : 'text-blueGray-700 hover:text-blueGray-500')
-                                    }
-                                    to="/"
+                                    className='text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500'
+                                    to="/dashboard/main"
                                 >
-                                    <i
-                                        className={
-                                            'fas fa-tv mr-2 text-sm text-blueGray-300'
-                                            // 'fas fa-tv mr-2 text-sm ' +
-                                            // (window.location.href.indexOf('/admin/dashboard') !== -1
-                                            //     ? 'opacity-75'
-                                            //     : 'text-blueGray-300')
-                                        }
-                                    ></i>{' '}
+                                    <i className='fas fa-tv mr-2 text-sm text-blueGray-300' />{' '}
                                     Dashboard
                                 </Link>
                             </li>
@@ -97,7 +82,7 @@ export default function Sidebar() {
                             <li className="items-center">
                                 <Link
                                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                                    to="/bluetrail-data"
+                                    to="/dashboard/bluetrail-data"
                                 >
                                     <i className="fas fa-map-pin mr-2 text-sm text-blueGray-300"></i>{' '}
                                     Map Data

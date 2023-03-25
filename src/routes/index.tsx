@@ -1,16 +1,10 @@
-import { storage } from '~/lib/storage'
-import { json, LinksFunction, LoaderArgs, redirect } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
-import { parse } from 'cookie'
-import { verify } from 'jsonwebtoken'
-import { config } from '~/lib/config/config'
-import { User } from '~/user/user'
-import React from 'react'
-import Sidebar from '~/components/sidebar/Sidebar'
-import HeaderStats from '~/components/Headers/HeaderStats'
-import AdminNavbar from '~/components/Navbars/AdminNavbar'
-import FooterAdmin from '~/components/Footers/FooterAdmin'
-import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
+import {Outlet} from "react-router";
+import {json, LoaderArgs, redirect} from "@remix-run/node";
+import {parse} from "cookie";
+import {verify} from "jsonwebtoken";
+import {config} from "~/lib/config/config";
+import {storage} from "~/lib/storage";
+import {User} from "~/user/user";
 
 export const loader = async (args: LoaderArgs) => {
     const { token } = parse(args.request.headers.get('cookie') ?? '')
@@ -25,24 +19,5 @@ export const loader = async (args: LoaderArgs) => {
         return redirect('/login')
     }
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
-    return json({ user: { id, email } })
+    return redirect('/dashboard/main')
 }
-
-
-const Index = () => {
-    const { user } = useLoaderData()
-    return (
-        <>
-            <Sidebar />
-            <div className="relative md:ml-64 bg-blueGray-100">
-                <AdminNavbar />
-                <HeaderStats />
-                <div className="px-4 md:px-10 mx-auto w-full -m-24">
-                    <FooterAdmin />
-                </div>
-            </div>
-        </>
-    )
-}
-
-export default Index

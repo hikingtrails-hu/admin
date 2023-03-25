@@ -15,6 +15,8 @@ import { blueTrailKeys } from '~/core/hbt/blue-trail-setup'
 import { Trail } from '~/core/types/types'
 import { Map } from '~/components/map/Map.client'
 import { ClientOnly } from 'remix-utils'
+import CardSettings from "~/components/Cards/CardSettings";
+import CardProfile from "~/components/Cards/CardProfile";
 // import {ClientOnly} from "~/components/map/ClientOnly";
 // import {Map} from "~/components/map/Map";
 
@@ -38,48 +40,34 @@ export const loader = async (args: LoaderArgs) => {
 }
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: fontAwesomeCss }]
-const Index = () => {
+const BluetrailData = () => {
     const { user, trails } = useLoaderData<typeof loader>()
-    return (
-        <>
-            <div className="relative bg-blueGray-100">
-                <AdminNavbar />
-                {/* Header */}
-                <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12">
-                    <div className="flex flex-wrap">
-                        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-                            <ClientOnly
-                                fallback={
-                                    <div id="skeleton" className="h-screen bg-blueGray-200" />
-                                }
-                            >
-                                {() => <Map trails={trails} />}
-                            </ClientOnly>
-                        </div>
-                        <div className="w-full xl:w-4/12 px-4">
-                            <ul>
-                                {trails.map((trail) => (
-                                    <li key={trail.id}>
-                                        <h2>{trail.name}</h2>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+    return <>
+        <div className="w-full lg:w-8/12 px-4">
+            <div className='h-screen pb-8'>
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-full">
+                    <div className="rounded bg-white mb-0 overflow-hidden h-full">
+                        <ClientOnly
+                            fallback={
+                                <div id="skeleton" className="h-screen bg-blueGray-200" />
+                            }
+                        >
+                            {() => <Map trails={trails} />}
+                        </ClientOnly>
                     </div>
                 </div>
-                <div className="px-4 md:px-10 mx-auto w-full -m-24">
-                    {/*<Switch>*/}
-                    {/*    <Route path="/admin/dashboard" exact component={Dashboard} />*/}
-                    {/*    <Route path="/admin/maps" exact component={Maps} />*/}
-                    {/*    <Route path="/admin/settings" exact component={Settings} />*/}
-                    {/*    <Route path="/admin/tables" exact component={Tables} />*/}
-                    {/*    <Redirect from="/admin" to="/admin/dashboard" />*/}
-                    {/*</Switch>*/}
-                    <FooterAdmin />
+            </div>
+        </div>
+        <div className="w-full lg:w-4/12 px-4">
+            <div className='h-screen pb-8'>
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-full">
+                    <div className="rounded bg-white mb-0 overflow-hidden h-full">
+
+                    </div>
                 </div>
             </div>
-        </>
-    )
+        </div>
+    </>
 }
 
-export default Index
+export default BluetrailData

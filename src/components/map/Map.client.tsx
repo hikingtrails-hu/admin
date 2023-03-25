@@ -7,7 +7,7 @@ export function Map(props: { trails: Trail[] }) {
     const { trails } = props
     console.log(trails)
     return (
-        <div className="h-screen pb-8">
+        <div className='h-full'>
             <MapContainer
                 style={{
                     height: '100%',
