@@ -37,12 +37,7 @@ export default function CardStats({
                     </div>
                     <p className="text-sm text-blueGray-400 mt-4">
                         <span className={statPercentColor + ' mr-2'}>
-                            <i
-                                className={
-                                    statIcon
-                                }
-                            ></i>{' '}
-                            {statPercent}
+                            <i className={statIcon}></i> {statPercent}
                         </span>
                         <span className="whitespace-nowrap">{statDescripiron}</span>
                     </p>

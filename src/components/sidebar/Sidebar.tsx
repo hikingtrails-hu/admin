@@ -64,14 +64,13 @@ export default function Sidebar() {
                         <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                             <li className="items-center">
                                 <Link
-                                    className='text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500'
+                                    className="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
                                     to="/dashboard/main"
                                 >
-                                    <i className='fas fa-tv mr-2 text-sm text-blueGray-300' />{' '}
+                                    <i className="fas fa-tv mr-2 text-sm text-blueGray-300" />{' '}
                                     Dashboard
                                 </Link>
                             </li>
-
                         </ul>
 
                         <hr className="my-4 md:min-w-full" />

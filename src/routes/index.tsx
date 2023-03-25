@@ -1,10 +1,10 @@
-import {Outlet} from "react-router";
-import {json, LoaderArgs, redirect} from "@remix-run/node";
-import {parse} from "cookie";
-import {verify} from "jsonwebtoken";
-import {config} from "~/lib/config/config";
-import {storage} from "~/lib/storage";
-import {User} from "~/user/user";
+import { Outlet } from 'react-router'
+import { json, LoaderArgs, redirect } from '@remix-run/node'
+import { parse } from 'cookie'
+import { verify } from 'jsonwebtoken'
+import { config } from '~/lib/config/config'
+import { storage } from '~/lib/storage'
+import { User } from '~/user/user'
 
 export const loader = async (args: LoaderArgs) => {
     const { token } = parse(args.request.headers.get('cookie') ?? '')

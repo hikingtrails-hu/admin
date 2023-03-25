@@ -1,7 +1,7 @@
 import type { LatLngTuple } from 'leaflet'
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 import { bounds } from '~/core/hungary/hungary'
-import {MeasuredLocationOnPath, Trail} from '~/core/types/types'
+import { MeasuredLocationOnPath, Trail } from '~/core/types/types'
 
 const markers = (trail: Trail) => {
     const result: MeasuredLocationOnPath[] = []
@@ -11,15 +11,8 @@ const markers = (trail: Trail) => {
         })
     })
     return result.map((location, i) => (
-        <Marker
-            key={`${i}`}
-            position={[
-                location.position.lat,
-                location.position.lon,
-            ]}
-
-        >
-            <Popup >
+        <Marker key={`${i}`} position={[location.position.lat, location.position.lon]}>
+            <Popup>
                 <h3>{location.name}</h3>
                 <p>{location.description}</p>
                 <dl>
@@ -31,28 +24,24 @@ const markers = (trail: Trail) => {
     ))
 }
 
-const TrailOnMap = (props: {trail: Trail}) => (
-        <>
-            <Polyline
-                color={'hsl(207,100%,33%)'}
-                key={props.trail.id}
-                positions={props.trail.path.nodes.map((node) => [
-                    node.point.lat,
-                    node.point.lon,
-                ])}
-            />
-            {markers(props.trail)}
+const TrailOnMap = (props: { trail: Trail }) => (
+    <>
+        <Polyline
+            color={'hsl(207,100%,33%)'}
+            key={props.trail.id}
+            positions={props.trail.path.nodes.map((node) => [node.point.lat, node.point.lon])}
+        />
+        {markers(props.trail)}
+    </>
+)
 
-        </>
-    )
-
-export function Map(props: { trails: Trail[] }) {
+export function Map(props: { trails: Trail[]; onReady: (mapRef) => void }) {
     const { trails } = props
     return (
-        <div className='h-full'>
+        <div className="h-full">
             <MapContainer
-                whenReady={(...params) => {
-                    console.log(params)
+                whenReady={(event) => {
+                    props.onReady(event.target)
                 }}
                 style={{
                     height: '100%',
@@ -64,7 +53,9 @@ export function Map(props: { trails: Trail[] }) {
                 maxZoom={18}
                 scrollWheelZoom={true}
             >
-                {props.trails.map((trail) => <TrailOnMap trail={trail} key={trail.id}/>)}
+                {props.trails.map((trail) => (
+                    <TrailOnMap trail={trail} key={trail.id} />
+                ))}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

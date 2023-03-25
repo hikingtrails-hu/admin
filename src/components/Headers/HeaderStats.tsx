@@ -16,7 +16,7 @@ export default function HeaderStats() {
                             <CardStats
                                 statSubtitle="Last Data Import"
                                 statTitle="8 hours ago"
-                                statIcon='fa-solid fa-check'
+                                statIcon="fa-solid fa-check"
                                 statPercent="Success"
                                 statPercentColor="text-emerald-500"
                                 statDescripiron=""
@@ -27,5 +27,6 @@ export default function HeaderStats() {
                     </div>
                 </div>
             </div>
-        </div>    )
+        </div>
+    )
 }

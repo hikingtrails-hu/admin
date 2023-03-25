@@ -1,6 +1,6 @@
 import { storage } from '~/lib/storage'
 import { json, LinksFunction, LoaderArgs, redirect } from '@remix-run/node'
-import {Outlet, useLoaderData} from '@remix-run/react'
+import { Outlet, useLoaderData } from '@remix-run/react'
 import { parse } from 'cookie'
 import { verify } from 'jsonwebtoken'
 import { config } from '~/lib/config/config'
@@ -11,8 +11,8 @@ import HeaderStats from '~/components/Headers/HeaderStats'
 import AdminNavbar from '~/components/Navbars/AdminNavbar'
 import FooterAdmin from '~/components/Footers/FooterAdmin'
 import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
-import CardSettings from "~/components/Cards/CardSettings";
-import CardProfile from "~/components/Cards/CardProfile";
+import CardSettings from '~/components/Cards/CardSettings'
+import CardProfile from '~/components/Cards/CardProfile'
 
 export const loader = async (args: LoaderArgs) => {
     const { token } = parse(args.request.headers.get('cookie') ?? '')
@@ -29,7 +29,6 @@ export const loader = async (args: LoaderArgs) => {
     const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
     return json({ user: { id, email } })
 }
-
 
 export default function Dashboard() {
     console.log(666)
