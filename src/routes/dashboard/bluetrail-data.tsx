@@ -21,22 +21,22 @@ import CardProfile from "~/components/Cards/CardProfile";
 // import {Map} from "~/components/map/Map";
 
 export const loader = async (args: LoaderArgs) => {
-    const token = parse(args.request.headers.get('cookie') ?? '').token
-    if (!token) {
-        return redirect('/login')
-    }
-    const { userId } = verify(token, config.jwtSecret)
-    if (!userId) {
-        return redirect('/login')
-    }
-    if (!(await storage.has(`admin-db/user/id/${userId}/data`))) {
-        return redirect('/login')
-    }
+    // const token = parse(args.request.headers.get('cookie') ?? '').token
+    // if (!token) {
+    //     return redirect('/login')
+    // }
+    // const { userId } = verify(token, config.jwtSecret)
+    // if (!userId) {
+    //     return redirect('/login')
+    // }
+    // if (!(await storage.has(`admin-db/user/id/${userId}/data`))) {
+    //     return redirect('/login')
+    // }
     const trails = await Promise.all(
         blueTrailKeys.map((key) => storage.get<Trail>(`trails/current/${key}.json`))
     )
-    const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
-    return json({ trails, user: { id, email } })
+    // const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
+    return json({ trails })
 }
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: fontAwesomeCss }]
@@ -59,8 +59,13 @@ const BluetrailData = () => {
         <div className="w-full lg:w-4/12 px-4">
             <div className='h-screen pb-8'>
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-full">
-                    <div className="rounded bg-white mb-0 overflow-hidden h-full">
-
+                    <div className="rounded-t bg-white mb-0 px-6 py-6">
+                        <div className="text-center flex justify-between">
+                            <h6 className="text-blueGray-700 text-xl font-bold">Map Data</h6>
+                        </div>
+                    </div>
+                    <div>
+                        Kontent
                     </div>
                 </div>
             </div>
