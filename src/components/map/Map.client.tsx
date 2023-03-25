@@ -17,8 +17,9 @@ const markers = (trail: Trail) => {
                 location.position.lat,
                 location.position.lon,
             ]}
+
         >
-            <Popup>
+            <Popup >
                 <h3>{location.name}</h3>
                 <p>{location.description}</p>
                 <dl>
@@ -50,6 +51,9 @@ export function Map(props: { trails: Trail[] }) {
     return (
         <div className='h-full'>
             <MapContainer
+                whenReady={(...params) => {
+                    console.log(params)
+                }}
                 style={{
                     height: '100%',
                 }}
