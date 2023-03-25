@@ -1,9 +1,11 @@
-import { LatLon, Trail } from '~/core/types/types'
+import { LatLon, MeasuredLocationOnPath, Trail } from '~/core/types/types'
 import { sprintf } from 'sprintf-js'
 import React from 'react'
 import { formatDistance } from '~/lib/map/map'
 
-export const TrailSelector = (props: { trail: Trail; onSelect: (position: LatLon) => void }) => {
+export type LocationSelected = (location: MeasuredLocationOnPath) => void
+
+export const TrailSelector = (props: { trail: Trail; onSelect: LocationSelected }) => {
     const { trail } = props
     const [opened, setOpened] = React.useState(true)
     return (
@@ -39,7 +41,7 @@ export const TrailSelector = (props: { trail: Trail; onSelect: (position: LatLon
                                         <button
                                             className="p-4 text-blueGray-600 px-4 py-2 block w-full text-left relative"
                                             onClick={() => {
-                                                props.onSelect(location.position)
+                                                props.onSelect(location)
                                             }}
                                         >
                                             <span className="border-l border-solid block pl-2 mr-4">
@@ -60,7 +62,7 @@ export const TrailSelector = (props: { trail: Trail; onSelect: (position: LatLon
     )
 }
 
-export const Selector = (props: { trails: Trail[]; onSelect: (position: LatLon) => void }) => {
+export const Selector = (props: { trails: Trail[]; onSelect: LocationSelected }) => {
     const { trails } = props
     return (
         <ul className="border-b border-solid text-xs">

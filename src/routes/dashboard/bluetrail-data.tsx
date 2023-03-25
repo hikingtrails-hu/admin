@@ -13,11 +13,13 @@ import FooterAdmin from '~/components/Footers/FooterAdmin'
 import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
 import { blueTrailKeys } from '~/core/hbt/blue-trail-setup'
 import { Trail } from '~/core/types/types'
-import { Map } from '~/components/map/Map.client'
+import { TrailMap } from '~/components/map/Map.client'
 import { ClientOnly } from 'remix-utils'
 import CardSettings from '~/components/Cards/CardSettings'
 import CardProfile from '~/components/Cards/CardProfile'
 import { Selector } from '~/components/map/Selector'
+import { EventEmitter } from 'events'
+import { allLocations } from '~/lib/map/map'
 // import {ClientOnly} from "~/components/map/ClientOnly";
 // import {Map} from "~/components/map/Map";
 
@@ -41,9 +43,17 @@ export const loader = async (args: LoaderArgs) => {
 }
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: fontAwesomeCss }]
+
+export type LocationSelectEmitters = Map<string, EventEmitter>
+
 const BluetrailData = () => {
     const { user, trails } = useLoaderData<typeof loader>()
     let leaflet = null
+    const locationSelectEmitter = new EventEmitter()
+    const emitters: LocationSelectEmitters = new Map()
+    allLocations(trails).forEach((location) => {
+        emitters.set(location.id, new EventEmitter())
+    })
     return (
         <>
             <div className="w-full lg:w-8/12 px-4">
@@ -53,7 +63,8 @@ const BluetrailData = () => {
                             fallback={<div id="skeleton" className="h-screen bg-blueGray-200" />}
                         >
                             {() => (
-                                <Map
+                                <TrailMap
+                                    emitters={emitters}
                                     trails={trails}
                                     onReady={(mapRef) => {
                                         leaflet = mapRef
@@ -75,11 +86,16 @@ const BluetrailData = () => {
                         <div>
                             <Selector
                                 trails={trails}
-                                onSelect={(position) => {
+                                onSelect={(location) => {
                                     if (leaflet) {
-                                        leaflet.flyTo([position.lat, position.lon], 13, {
-                                            duration: 1.5
-                                        })
+                                        emitters.get(location.id)?.emit('selected', location)
+                                        leaflet.flyTo(
+                                            [location.position.lat, location.position.lon],
+                                            13,
+                                            {
+                                                duration: 1.5,
+                                            }
+                                        )
                                     }
                                 }}
                             />

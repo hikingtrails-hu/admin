@@ -2,16 +2,21 @@ import type { LatLngTuple } from 'leaflet'
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 import { bounds } from '~/core/hungary/hungary'
 import { MeasuredLocationOnPath, Trail } from '~/core/types/types'
+import { useRef } from 'react'
+import { LocationSelectEmitter } from '~/lib/map/map'
+import { EventEmitter } from 'events'
+import { LocationSelectEmitters } from '~/routes/dashboard/bluetrail-data'
 
-const markers = (trail: Trail) => {
-    const result: MeasuredLocationOnPath[] = []
-    trail.path.checkpoints.forEach((checkpoint) => {
-        checkpoint.locations.forEach((location) => {
-            result.push(location)
-        })
+const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: EventEmitter }) => {
+    let ref = useRef()
+    const { location } = props
+    // console.log({selector})
+    props.emitter.on('selected', (e) => {
+        console.log(ref.current)
+        ref?.current?.openPopup()
     })
-    return result.map((location, i) => (
-        <Marker key={`${i}`} position={[location.position.lat, location.position.lon]}>
+    return (
+        <Marker position={[location.position.lat, location.position.lon]} ref={ref}>
             <Popup>
                 <h3>{location.name}</h3>
                 <p>{location.description}</p>
@@ -21,21 +26,37 @@ const markers = (trail: Trail) => {
                 </dl>
             </Popup>
         </Marker>
+    )
+}
+
+const markers = (trail: Trail, emitters: LocationSelectEmitters) => {
+    const result: MeasuredLocationOnPath[] = []
+    trail.path.checkpoints.forEach((checkpoint) => {
+        checkpoint.locations.forEach((location) => {
+            result.push(location)
+        })
+    })
+    return result.map((location, i) => (
+        <LocationMarker location={location} key={i} emitter={emitters.get(location.id)} />
     ))
 }
 
-const TrailOnMap = (props: { trail: Trail }) => (
+const TrailOnMap = (props: { trail: Trail; emitters: LocationSelectEmitters }) => (
     <>
         <Polyline
             color={'hsl(207,100%,33%)'}
             key={props.trail.id}
             positions={props.trail.path.nodes.map((node) => [node.point.lat, node.point.lon])}
         />
-        {markers(props.trail)}
+        {markers(props.trail, props.emitters)}
     </>
 )
 
-export function Map(props: { trails: Trail[]; onReady: (mapRef) => void }) {
+export function TrailMap(props: {
+    trails: Trail[]
+    onReady: (mapRef) => void
+    emitters: LocationSelectEmitters
+}) {
     const { trails } = props
     return (
         <div className="h-full">
@@ -54,7 +75,7 @@ export function Map(props: { trails: Trail[]; onReady: (mapRef) => void }) {
                 scrollWheelZoom={true}
             >
                 {props.trails.map((trail) => (
-                    <TrailOnMap trail={trail} key={trail.id} />
+                    <TrailOnMap trail={trail} key={trail.id} emitters={props.emitters} />
                 ))}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

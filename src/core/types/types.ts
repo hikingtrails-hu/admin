@@ -35,6 +35,7 @@ export type Location = {
     name: string
     description: string
     position: Point
+    id: string
 }
 
 export type LocationOnPath = Location & OnPath
