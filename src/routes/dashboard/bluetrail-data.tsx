@@ -77,7 +77,9 @@ const BluetrailData = () => {
                                 trails={trails}
                                 onSelect={(position) => {
                                     if (leaflet) {
-                                        leaflet.flyTo([position.lat, position.lon], 13)
+                                        leaflet.flyTo([position.lat, position.lon], 13, {
+                                            duration: 1.5
+                                        })
                                     }
                                 }}
                             />
