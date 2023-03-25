@@ -31,7 +31,6 @@ export const loader = async (args: LoaderArgs) => {
 }
 
 export default function Dashboard() {
-    console.log(666)
     return (
         <>
             <Sidebar />

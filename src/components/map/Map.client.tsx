@@ -12,7 +12,6 @@ const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: Even
     const { location } = props
     // console.log({selector})
     props.emitter.on('selected', (e) => {
-        console.log(ref.current)
         ref?.current?.openPopup()
     })
     return (
