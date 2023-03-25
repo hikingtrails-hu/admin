@@ -7,7 +7,7 @@ export type LocationSelected = (location: MeasuredLocationOnPath) => void
 
 export const TrailSelector = (props: { trail: Trail; onSelect: LocationSelected }) => {
     const { trail } = props
-    const [opened, setOpened] = React.useState(true)
+    const [opened, setOpened] = React.useState(false)
     return (
         <li key={trail.id}>
             <h2 className="border-t border-solid">
