@@ -84,7 +84,7 @@ export default function Sidebar() {
                                     className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                                     to="/dashboard/bluetrail-data"
                                 >
-                                    <i className="fas fa-map-pin mr-2 text-sm text-blueGray-300"></i>{' '}
+                                    <i className="fas fa-map-location-dot mr-2 text-sm text-blueGray-300"></i>{' '}
                                     Map Data
                                 </Link>
                             </li>

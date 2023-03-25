@@ -17,6 +17,7 @@ import { Map } from '~/components/map/Map.client'
 import { ClientOnly } from 'remix-utils'
 import CardSettings from "~/components/Cards/CardSettings";
 import CardProfile from "~/components/Cards/CardProfile";
+import {Selector} from "~/components/map/Selector";
 // import {ClientOnly} from "~/components/map/ClientOnly";
 // import {Map} from "~/components/map/Map";
 
@@ -58,14 +59,14 @@ const BluetrailData = () => {
         </div>
         <div className="w-full lg:w-4/12 px-4">
             <div className='h-screen pb-8'>
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-full">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-full overflow-scroll">
                     <div className="rounded-t bg-white mb-0 px-6 py-6">
                         <div className="text-center flex justify-between">
                             <h6 className="text-blueGray-700 text-xl font-bold">Map Data</h6>
                         </div>
                     </div>
                     <div>
-                        Kontent
+                        <Selector trails={trails} />
                     </div>
                 </div>
             </div>
