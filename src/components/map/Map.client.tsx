@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 import { bounds } from '~/core/hungary/hungary'
 import { MeasuredLocationOnPath, Trail } from '~/core/types/types'
 import { useRef } from 'react'
-import { LocationSelectEmitter } from '~/lib/map/map'
+import {formatDistance, LocationSelectEmitter} from '~/lib/map/map'
 import { EventEmitter } from 'events'
 import { LocationSelectEmitters } from '~/routes/dashboard/bluetrail-data'
 
@@ -17,12 +17,14 @@ const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: Even
     return (
         <Marker position={[location.position.lat, location.position.lon]} ref={ref}>
             <Popup>
-                <h3>{location.name}</h3>
-                <p>{location.description}</p>
-                <dl>
-                    <dt>Distance from previous</dt>
-                    <dd>{location.distance} m</dd>
-                </dl>
+                <div className='text-xs'>
+                    <h3 className='font-bold'>{location.name}</h3>
+                    <p className='italic'>{location.description}</p>
+                    <dl>
+                        <dt className='inline-block'>Distance from previous location:</dt>
+                        <dd className='inline-block font-semibold'>&nbsp;{formatDistance(location.distance)}</dd>
+                    </dl>
+                </div>
             </Popup>
         </Marker>
     )
