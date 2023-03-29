@@ -20,8 +20,8 @@ import CardProfile from '~/components/Cards/CardProfile'
 import { Selector } from '~/components/map/Selector'
 import { EventEmitter } from 'events'
 import { allLocations } from '~/lib/map/map'
-import TableDropdown from "~/components/Dropdowns/TableDropdown";
-import {TrailsTable} from "~/components/map/TrailsTable";
+import TableDropdown from '~/components/Dropdowns/TableDropdown'
+import { TrailsTable } from '~/components/map/TrailsTable'
 // import {ClientOnly} from "~/components/map/ClientOnly";
 // import {Map} from "~/components/map/Map";
 
@@ -52,7 +52,6 @@ const BluetrailData = () => {
     const color = 'light'
 
     const { user, trails } = useLoaderData<typeof loader>()
-
 
     let leaflet = null
     const locationSelectEmitter = new EventEmitter()
@@ -109,30 +108,25 @@ const BluetrailData = () => {
                     </div>
                 </div>
             </div>
-            <div className='p-4 w-full'
-
-            >
-                <div className={
-                    "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-                    (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
-                }>
-                <div className="rounded-t mb-0 px-4 py-3 border-0">
-                    <div className="flex flex-wrap items-center">
-                        <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-                            <h3
-                                className={
-                                    "font-semibold text-lg text-blueGray-700"
-                                }
-                            >
-                                Checkpoints &amp; Locations
-                            </h3>
+            <div className="p-4 w-full">
+                <div
+                    className={
+                        'relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ' +
+                        (color === 'light' ? 'bg-white' : 'bg-lightBlue-900 text-white')
+                    }
+                >
+                    <div className="rounded-t mb-0 px-4 py-3 border-0">
+                        <div className="flex flex-wrap items-center">
+                            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                                <h3 className={'font-semibold text-lg text-blueGray-700'}>
+                                    Checkpoints &amp; Locations
+                                </h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="block w-full overflow-x-auto">
-                    <TrailsTable trails={trails} onSelect={() => {
-}}/>
-                </div>
+                    <div className="block w-full overflow-x-auto">
+                        <TrailsTable trails={trails} onSelect={() => {}} />
+                    </div>
                 </div>
             </div>
         </>

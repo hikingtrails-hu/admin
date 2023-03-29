@@ -19,7 +19,9 @@ export const TrailSelector = (props: { trail: Trail; onSelect: LocationSelected 
                 >
                     {trail.name}
                     <span className="absolute right-4">
-                        <i className={'fa-solid ' + (opened ? 'fa-chevron-up' : 'fa-chevron-down')} />
+                        <i
+                            className={'fa-solid ' + (opened ? 'fa-chevron-up' : 'fa-chevron-down')}
+                        />
                     </span>
                 </button>
             </h2>
