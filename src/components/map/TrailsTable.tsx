@@ -6,26 +6,22 @@ import { LocationSelected } from '~/components/map/Selector'
 
 const CheckpointTable = (props: { checkpoint: CheckPoint; onSelect: LocationSelected }) => {
     const { checkpoint } = props
-    return (
-        <>
-            {checkpoint.locations.map((location, i) => (
-                <tr key={i} className="bg-white">
-                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                        {i === 0 ? checkpoint.name : null}
-                    </th>
-                    <td className="bg-blueGray-50 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {i === 0 ? formatDistance(checkpoint.locations[0].distance) : null}
-                    </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4">
-                        <p className="max-w-xs overflow-x-auto">{location.description}</p>
-                    </td>
-                    <td className="bg-blueGray-50 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <p>{formatDistance(location.distance)}</p>
-                    </td>
-                </tr>
-            ))}
-        </>
-    )
+    return <>
+        {checkpoint.locations.map((location, i) => <tr key={i} className="bg-white">
+                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                    {i === 0 ? checkpoint.name : null}
+                </th>
+                <td className="bg-blueGray-50 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {i === 0 ? formatDistance(checkpoint.locations[0].distance) : null}
+                </td>
+                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4">
+                    <p className="max-w-xs overflow-x-auto">{location.description}</p>
+                </td>
+                <td className="bg-blueGray-50 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <p>{formatDistance(location.distance)}</p>
+                </td>
+            </tr>)}
+    </>
 }
 
 const TrailTable = (props: { trail: Trail; onSelect: LocationSelected }) => {
