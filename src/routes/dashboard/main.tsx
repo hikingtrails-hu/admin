@@ -15,7 +15,7 @@ export default function Main() {
                     </div>
                     <div className="flex-auto px-4 lg:px-10 py-10 pt-0 text-sm">
                         <h3 className="mt-8 mb-6 font-bold uppercase">Github</h3>
-                        <ul className="list-disc">
+                        <ul className="ml-6 list-disc">
                             <li>
                                 <Link
                                     to="https://github.com/hikingtrails-hu/"
@@ -26,7 +26,7 @@ export default function Main() {
                             </li>
                         </ul>
                         <h3 className="mt-8 mb-6 font-bold uppercase">Hosting</h3>
-                        <ul className="list-disc">
+                        <ul className="ml-6 list-disc">
                             <li>
                                 <Link
                                     to="https://fly.io/dashboard/"
@@ -42,6 +42,16 @@ export default function Main() {
                                 >
                                     Google Cloud Console
                                 </Link>
+                                <ul className="ml-6 list-disc">
+                                    <li>
+                                        <Link
+                                            to="https://console.cloud.google.com/functions/list?project=hikingtrails-hu"
+                                            className="underline text-lightBlue-700"
+                                        >
+                                            Functions
+                                        </Link>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
