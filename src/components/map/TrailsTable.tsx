@@ -8,13 +8,13 @@ const CheckpointTable = (props: { checkpoint: CheckPoint; onSelect: LocationSele
     const { checkpoint } = props;
     return <>
         {checkpoint.locations.map((location, i) => (
-            <tr key={i}>
+            <tr key={i} className='bg-white'>
                 <th
                     className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center'>
                     {i === 0 ? checkpoint.name : null}
                 </th>
                 <td
-                    className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+                    className='bg-blueGray-50 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                     {i === 0 ? formatDistance(checkpoint.locations[0].distance): null}
                 </td>
                 <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4'>
@@ -22,7 +22,7 @@ const CheckpointTable = (props: { checkpoint: CheckPoint; onSelect: LocationSele
                         {location.description}
                     </p>
                 </td>
-                <td className='border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
+                <td className='bg-blueGray-50 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4'>
                     <p>
                         {formatDistance(location.distance)}
                     </p>
