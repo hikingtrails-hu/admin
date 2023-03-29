@@ -1,7 +1,7 @@
 import CardSettings from '~/components/Cards/CardSettings'
 import CardProfile from '~/components/Cards/CardProfile'
 import React from 'react'
-import {Link} from "@remix-run/react";
+import { Link } from '@remix-run/react'
 
 export default function Main() {
     return (
@@ -14,19 +14,34 @@ export default function Main() {
                         </div>
                     </div>
                     <div className="flex-auto px-4 lg:px-10 py-10 pt-0 text-sm">
-                        <h3 className='mt-8 mb-6 font-bold uppercase'>Github</h3>
-                        <ul className='list-disc'>
+                        <h3 className="mt-8 mb-6 font-bold uppercase">Github</h3>
+                        <ul className="list-disc">
                             <li>
-                                <Link to='https://github.com/hikingtrails-hu/' className='underline text-lightBlue-700'>Organization page</Link>
+                                <Link
+                                    to="https://github.com/hikingtrails-hu/"
+                                    className="underline text-lightBlue-700"
+                                >
+                                    Organization page
+                                </Link>
                             </li>
                         </ul>
-                        <h3 className='mt-8 mb-6 font-bold uppercase'>Hosting</h3>
-                        <ul className='list-disc'>
+                        <h3 className="mt-8 mb-6 font-bold uppercase">Hosting</h3>
+                        <ul className="list-disc">
                             <li>
-                                <Link to='https://fly.io/dashboard/' className='underline text-lightBlue-700'>Fly.io</Link>
+                                <Link
+                                    to="https://fly.io/dashboard/"
+                                    className="underline text-lightBlue-700"
+                                >
+                                    Fly.io
+                                </Link>
                             </li>
                             <li>
-                                <Link to='https://console.cloud.google.com/welcome?project=hikingtrails-hu' className='underline text-lightBlue-700'>Google Cloud Console</Link>
+                                <Link
+                                    to="https://console.cloud.google.com/welcome?project=hikingtrails-hu"
+                                    className="underline text-lightBlue-700"
+                                >
+                                    Google Cloud Console
+                                </Link>
                             </li>
                         </ul>
                     </div>
