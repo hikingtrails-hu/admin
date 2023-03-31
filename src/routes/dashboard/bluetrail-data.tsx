@@ -22,6 +22,8 @@ import { EventEmitter } from 'events'
 import { allLocations } from '~/lib/map/map'
 import TableDropdown from '~/components/Dropdowns/TableDropdown'
 import { TrailsTable } from '~/components/map/TrailsTable'
+import tailwind from '~/tailwind.css'
+import leafletCss from 'leaflet/dist/leaflet.css'
 // import {ClientOnly} from "~/components/map/ClientOnly";
 // import {Map} from "~/components/map/Map";
 
@@ -44,7 +46,12 @@ export const loader = async (args: LoaderArgs) => {
     return json({ trails })
 }
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: fontAwesomeCss }]
+export const links: LinksFunction = () => [
+    {
+        rel: 'stylesheet',
+        href: leafletCss,
+    },
+]
 
 export type LocationSelectEmitters = Map<string, EventEmitter>
 

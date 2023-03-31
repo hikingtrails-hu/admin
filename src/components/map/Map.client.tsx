@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import { formatDistance, LocationSelectEmitter } from '~/lib/map/map'
 import { EventEmitter } from 'events'
 import { LocationSelectEmitters } from '~/routes/dashboard/bluetrail-data'
+import { Icon } from 'leaflet'
 
 const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: EventEmitter }) => {
     let ref = useRef()
@@ -15,7 +16,15 @@ const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: Even
         ref?.current?.openPopup()
     })
     return (
-        <Marker position={[location.position.lat, location.position.lon]} ref={ref}>
+        <Marker
+            position={[location.position.lat, location.position.lon]}
+            ref={ref}
+            icon={
+                new Icon.Default({
+                    imagePath: '/images/leaflet/',
+                })
+            }
+        >
             <Popup>
                 <div className="text-xs">
                     <h3 className="font-bold">{location.name}</h3>

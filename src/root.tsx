@@ -6,10 +6,6 @@ import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
 
 export const links: LinksFunction = () => [
     { rel: 'stylesheet', href: tailwind },
-    {
-        rel: 'stylesheet',
-        href: 'https://unpkg.com/leaflet@1.8.0/dist/leaflet.css',
-    },
     { rel: 'stylesheet', href: fontAwesomeCss },
 ]
 
@@ -23,6 +19,7 @@ export default function App() {
     return (
         <html lang="en">
             <head>
+                <base href="/" />
                 <Meta />
                 <Links />
             </head>
