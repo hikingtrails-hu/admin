@@ -1,18 +1,15 @@
 import { storage } from '~/lib/storage'
-import { json, LinksFunction, LoaderArgs, redirect } from '@remix-run/node'
-import { Outlet, useLoaderData } from '@remix-run/react'
+import { json, LoaderArgs, redirect } from '@remix-run/node'
+import { Outlet } from '@remix-run/react'
 import { parse } from 'cookie'
 import { verify } from 'jsonwebtoken'
 import { config } from '~/lib/config/config'
 import { User } from '~/user/user'
 import React from 'react'
 import Sidebar from '~/components/sidebar/Sidebar'
-import HeaderStats from '~/components/Headers/HeaderStats'
-import AdminNavbar from '~/components/Navbars/AdminNavbar'
-import FooterAdmin from '~/components/Footers/FooterAdmin'
-import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
-import CardSettings from '~/components/Cards/CardSettings'
-import CardProfile from '~/components/Cards/CardProfile'
+import HeaderStats from '~/components/header/HeaderStats'
+import AdminNavbar from '~/components/header/AdminNavbar'
+import FooterAdmin from '~/components/footer/FooterAdmin'
 
 export const loader = async (args: LoaderArgs) => {
     const { token } = parse(args.request.headers.get('cookie') ?? '')

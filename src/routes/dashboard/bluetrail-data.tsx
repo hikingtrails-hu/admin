@@ -1,48 +1,21 @@
 import { storage } from '~/lib/storage'
 import { json, LinksFunction, LoaderArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
-import { parse } from 'cookie'
-import { verify } from 'jsonwebtoken'
-import { config } from '~/lib/config/config'
-import { User } from '~/user/user'
 import React, { Suspense, lazy } from 'react'
-import Sidebar from '~/components/sidebar/Sidebar'
-import HeaderStats from '~/components/Headers/HeaderStats'
-import AdminNavbar from '~/components/Navbars/AdminNavbar'
-import FooterAdmin from '~/components/Footers/FooterAdmin'
-import fontAwesomeCss from '@fortawesome/fontawesome-free/css/all.min.css'
 import { blueTrailKeys } from '~/core/hbt/blue-trail-setup'
 import { Trail } from '~/core/types/types'
 import { TrailMap } from '~/components/map/Map.client'
 import { ClientOnly } from 'remix-utils'
-import CardSettings from '~/components/Cards/CardSettings'
-import CardProfile from '~/components/Cards/CardProfile'
 import { Selector } from '~/components/map/Selector'
 import { EventEmitter } from 'events'
 import { allLocations } from '~/lib/map/map'
-import TableDropdown from '~/components/Dropdowns/TableDropdown'
 import { TrailsTable } from '~/components/map/TrailsTable'
-import tailwind from '~/tailwind.css'
 import leafletCss from 'leaflet/dist/leaflet.css'
-// import {ClientOnly} from "~/components/map/ClientOnly";
-// import {Map} from "~/components/map/Map";
 
 export const loader = async (args: LoaderArgs) => {
-    // const token = parse(args.request.headers.get('cookie') ?? '').token
-    // if (!token) {
-    //     return redirect('/login')
-    // }
-    // const { userId } = verify(token, config.jwtSecret)
-    // if (!userId) {
-    //     return redirect('/login')
-    // }
-    // if (!(await storage.has(`admin-db/user/id/${userId}/data`))) {
-    //     return redirect('/login')
-    // }
     const trails = await Promise.all(
         blueTrailKeys.map((key) => storage.get<Trail>(`trails/current/${key}.json`))
     )
-    // const { id, email } = await storage.get<User>(`admin-db/user/id/${userId}/data`)
     return json({ trails })
 }
 

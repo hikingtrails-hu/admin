@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Form } from '@remix-run/react'
 
 export default function AdminNavbar() {

@@ -1,5 +1,3 @@
-import CardSettings from '~/components/Cards/CardSettings'
-import CardProfile from '~/components/Cards/CardProfile'
 import React from 'react'
 import { Link } from '@remix-run/react'
 

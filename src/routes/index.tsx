@@ -1,5 +1,4 @@
-import { Outlet } from 'react-router'
-import { json, LoaderArgs, redirect } from '@remix-run/node'
+import { LoaderArgs, redirect } from '@remix-run/node'
 import { parse } from 'cookie'
 import { verify } from 'jsonwebtoken'
 import { config } from '~/lib/config/config'

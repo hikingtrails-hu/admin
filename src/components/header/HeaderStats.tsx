@@ -1,10 +1,5 @@
 import React from 'react'
-
-// components
-
-import CardStats from '~/components/Cards/CardStats'
-import CardLineChart from '~/components/Cards/CardLineChart'
-import CardBarChart from '~/components/Cards/CardBarChart'
+import CardStats from '~/components/header/CardStats'
 
 export default function HeaderStats() {
     return (
