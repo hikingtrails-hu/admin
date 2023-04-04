@@ -1,12 +1,11 @@
 import type { LatLngTuple } from 'leaflet'
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
-import { bounds } from '~/core/hungary/hungary'
-import { MeasuredLocationOnPath, Trail } from '~/core/types/types'
 import { useRef } from 'react'
 import { formatDistance, LocationSelectEmitter } from '~/lib/map/map'
 import { EventEmitter } from 'events'
 import { LocationSelectEmitters } from '~/routes/dashboard/bluetrail-data'
 import { Icon } from 'leaflet'
+import {Hungary, Trail, Location} from "@hikingtrails-hu/core";
 
 const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: EventEmitter }) => {
     let ref = useRef()
@@ -42,7 +41,7 @@ const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: Even
 }
 
 const markers = (trail: Trail, emitters: LocationSelectEmitters) => {
-    const result: MeasuredLocationOnPath[] = []
+    const result: Location[] = []
     trail.path.checkpoints.forEach((checkpoint) => {
         checkpoint.locations.forEach((location) => {
             result.push(location)
@@ -70,6 +69,7 @@ export function TrailMap(props: {
     emitters: LocationSelectEmitters
 }) {
     const { trails } = props
+    const {bounds} = Hungary
     return (
         <div className="h-full">
             <MapContainer

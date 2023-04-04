@@ -2,8 +2,7 @@ import { storage } from '~/lib/storage'
 import { json, LinksFunction, LoaderArgs, redirect } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import React, { Suspense, lazy } from 'react'
-import { blueTrailKeys } from '~/core/hbt/blue-trail-setup'
-import { Trail } from '~/core/types/types'
+import { BlueTrail, Trail } from '@hikingtrails-hu/core'
 import { TrailMap } from '~/components/map/Map.client'
 import { ClientOnly } from 'remix-utils'
 import { Selector } from '~/components/map/Selector'
@@ -14,7 +13,7 @@ import leafletCss from 'leaflet/dist/leaflet.css'
 
 export const loader = async (args: LoaderArgs) => {
     const trails = await Promise.all(
-        blueTrailKeys.map((key) => storage.get<Trail>(`trails/current/${key}.json`))
+        BlueTrail.keys.map((key) => storage.get<Trail>(`trails/current/${key}.json`))
     )
     return json({ trails })
 }

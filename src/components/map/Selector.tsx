@@ -1,4 +1,4 @@
-import { LatLon, MeasuredLocationOnPath, Trail } from '~/core/types/types'
+import { LatLon, MeasuredLocationOnPath, Trail } from '@hikingtrails-hu/core'
 import { sprintf } from 'sprintf-js'
 import React from 'react'
 import { formatDistance } from '~/lib/map/map'
