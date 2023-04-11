@@ -5,9 +5,9 @@ import { formatDistance, LocationSelectEmitter } from '~/lib/map/map'
 import { EventEmitter } from 'events'
 import { LocationSelectEmitters } from '~/routes/dashboard/bluetrail-data'
 import { Icon } from 'leaflet'
-import {Hungary, Trail, Location} from "@hikingtrails-hu/core";
+import { Hungary, Trail, Location } from '@hikingtrails-hu/core'
 
-const LocationMarker = (props: { location: MeasuredLocationOnPath; emitter: EventEmitter }) => {
+const LocationMarker = (props: { location: Location; emitter: EventEmitter }) => {
     let ref = useRef()
     const { location } = props
     // console.log({selector})
@@ -69,7 +69,7 @@ export function TrailMap(props: {
     emitters: LocationSelectEmitters
 }) {
     const { trails } = props
-    const {bounds} = Hungary
+    const { bounds } = Hungary
     return (
         <div className="h-full">
             <MapContainer

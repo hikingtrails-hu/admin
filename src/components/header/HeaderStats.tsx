@@ -10,7 +10,7 @@ export default function HeaderStats() {
                         <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                             <CardStats
                                 statSubtitle="Last Data Import"
-                                statTitle="8 hours ago"
+                                statTitle="10 hours ago"
                                 statIcon="fa-solid fa-check"
                                 statPercent="Success"
                                 statPercentColor="text-emerald-500"

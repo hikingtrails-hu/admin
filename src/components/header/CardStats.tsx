@@ -1,6 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+type Props = {
+    statSubtitle: string
+    statTitle: string
+    statIcon: string
+    statPercent: string
+    statPercentColor: string
+    statDescripiron: string
+    statIconName: string
+    statIconColor: string
+}
+
 export default function CardStats({
     statSubtitle,
     statTitle,
@@ -10,7 +21,7 @@ export default function CardStats({
     statDescripiron,
     statIconName,
     statIconColor,
-}) {
+}: Props) {
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">

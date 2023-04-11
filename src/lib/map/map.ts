@@ -1,6 +1,6 @@
 import { sprintf } from 'sprintf-js'
 import { EventEmitter } from 'events'
-import {Location, Trail} from "@hikingtrails-hu/core";
+import { Location, Trail } from '@hikingtrails-hu/core'
 
 export const formatDistance = (distance: number) => `${sprintf('%.2f', distance / 1000)} km`
 

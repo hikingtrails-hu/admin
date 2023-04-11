@@ -1,15 +1,15 @@
-import { LatLon, MeasuredLocationOnPath, Trail } from '@hikingtrails-hu/core'
+import { Trail } from '@hikingtrails-hu/core'
 import { sprintf } from 'sprintf-js'
 import React from 'react'
 import { formatDistance } from '~/lib/map/map'
 
-export type LocationSelected = (location: MeasuredLocationOnPath) => void
+export type LocationSelected = (location: Location) => void
 
 export const TrailSelector = (props: { trail: Trail; onSelect: LocationSelected }) => {
     const { trail } = props
     const [opened, setOpened] = React.useState(false)
     return (
-        <li key={trail.id}>
+        <li key={trail.key}>
             <h2 className="border-t border-solid">
                 <button
                     className="p-4 font-bold text-blueGray-600  p-4 block w-full text-left relative"
