@@ -14,7 +14,7 @@ export const ensureSetup = () => {
         'utf-8'
     )
     console.log({ serviceAccountLength: serviceAccount.length })
-    writeFileSync(env['GOOGLE_APPLICATION_CREDENTIALS'], serviceAccount.toString('utf-8'))
+    writeFileSync(env['GOOGLE_APPLICATION_CREDENTIALS'], serviceAccount.toString())
     console.log(env['GOOGLE_APPLICATION_CREDENTIALS'], 'written')
     const stats = statSync(env['GOOGLE_APPLICATION_CREDENTIALS'])
     console.log('file size', stats.size)
