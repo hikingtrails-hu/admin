@@ -1,0 +1,53 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: yarn
+      - name: Build
+        run: make
+      - name: Verify
+        run: make verify
+      - name: Store build output
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: |
+            .dockerignore
+            apps/admin/.cache
+            apps/admin/dist
+            apps/admin/public/dist
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: yarn
+      - name: Install production dependencies
+        run: make production-deps
+      - name: Download build output
+        uses: actions/download-artifact@v3
+        with:
+          name: build-output
+      - name: Uses fly.io CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

@@ -1,0 +1,10 @@
+services:
+  storage:
+    image: fsouza/fake-gcs-server:latest
+    ports:
+      - 5100:5100
+    volumes:
+      - gcs_data:/data
+    command: [ "-scheme", "http", "-port", "5100", "-external-url", "http://localhost:5100", "-backend", "memory" ]
+volumes:
+  gcs_data:

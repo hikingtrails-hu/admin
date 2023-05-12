@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd "$SCRIPT_DIR/.." || exit 1
+
+DEV_JS=$(cat <<EOF
+    require('dotenv').config()
+    const { run } = require('.//src/cli/cli')
+    void run()
+EOF
+)
+
+PROD_JS=$(cat <<EOF
+    const { run } = require('./dist/index.js').routes.root.module.cli
+    void run()
+EOF
+)
+
+if [ "${NODE_ENV:-}" == "production" ]
+then
+    node -e "$PROD_JS" -- -- "$@"
+else
+    ../../node_modules/.bin/ts-node --transpile-only --swc -r alias-hq/init -e "$DEV_JS" -- -- "$@"
+fi
