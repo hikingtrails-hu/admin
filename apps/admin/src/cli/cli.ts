@@ -1,5 +1,5 @@
 import { Command } from 'commander'
-import { ensureSetup } from '~/cli/ensure-setup'
+import { ensureSetup } from '~/cli/ensure-setup.server'
 
 export const run = async () => {
     ensureSetup()
