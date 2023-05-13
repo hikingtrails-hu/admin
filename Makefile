@@ -37,7 +37,7 @@ docker:
 .dockerignore: node_modules .gitignore
 	$(BIN)/npmignore -n .dockerignore \
 		-i .git,.yarn \
-		-u dist,.cache,dist,node_modules,/.gcloud
+		-u dist,.cache,dist,node_modules,/.gcloud/*
 
 init: .env docker
 
