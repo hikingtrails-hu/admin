@@ -5,18 +5,18 @@ import { writeFileSync, rmSync } from 'node:fs'
 import { serverConfig } from '~/config/config.server'
 import { generateTimestampedId } from '~/id/id'
 import { strict as assert } from 'node:assert'
-import { setTimeout } from 'node:timers/promises'
 
 export class Storage {
     private readonly bucket: Bucket
+    private config: ReturnType<typeof serverConfig>['gCloud']
 
     constructor() {
-        const config = serverConfig()
+        this.config = serverConfig().gCloud
         const storage = new CloudStorage({
-            apiEndpoint: config.gCloud.storageApiEndpoint,
-            projectId: config.gCloud.projectName,
+            apiEndpoint: this.config.storageApiEndpoint,
+            projectId: this.config.projectName,
         })
-        this.bucket = storage.bucket(config.gCloud.storageBucketName)
+        this.bucket = storage.bucket(this.config.storageBucketName)
     }
 
     public async has(key: string): Promise<boolean> {
@@ -38,13 +38,14 @@ export class Storage {
     }
 
     public async ensure(): Promise<void> {
-        const exists = await this.bucket.exists()
-        if (!exists) {
-            await this.bucket.create()
+        if (this.config.initialize) {
+            const exists = await this.bucket.exists()
+            if (!exists) {
+                await this.bucket.create()
+            }
         }
         await this.set('dummy', 1)
         assert(await this.has('dummy'))
-        await setTimeout(2000)
     }
 }
 
