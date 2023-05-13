@@ -8,4 +8,4 @@ COPY --chown=node:node . /app
 USER node
 WORKDIR /app/apps/admin
 
-CMD ["./start.sh"]
+CMD ["./docker-entrypoint.sh"]
