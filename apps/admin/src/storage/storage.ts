@@ -5,6 +5,7 @@ import { writeFileSync, rmSync } from 'node:fs'
 import { serverConfig } from "~/config/config.server";
 import { generateTimestampedId } from "~/id/id";
 import { strict as assert } from "node:assert";
+import { setTimeout } from "node:timers/promises";
 
 export class Storage {
     private readonly bucket: Bucket
@@ -43,6 +44,7 @@ export class Storage {
         }
         await this.set('dummy', 1)
         assert(await this.has('dummy'))
+        await setTimeout(2000)
     }
 }
 
