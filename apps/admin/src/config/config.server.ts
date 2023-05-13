@@ -8,6 +8,7 @@ export const serverConfig = () => ({
         projectName: getenv('GCLOUD_PROJECT', ''),
         storageApiEndpoint: getenv('GCLOUD_STORAGE_API_ENDPOINT', ''),
         storageBucketName: 'hikingtrails-db',
-        slowQueueTopic: 'slow-queue',
+        pubsubTopic: 'slow-queue',
+        pubsubSubscription: 'slow-queue-subscription',
     },
 })

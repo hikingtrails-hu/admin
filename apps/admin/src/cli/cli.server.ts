@@ -1,5 +1,5 @@
 import { Command } from 'commander'
-import { startWorker } from '~/worker/main'
+import { loadDataRequest, startWorker } from '~/worker/main'
 
 export const run = async () => {
     const program = new Command()
@@ -11,6 +11,13 @@ export const run = async () => {
         .description('Starts Pub/Sub worker')
         .action(async () => {
             await startWorker()
+        })
+
+    program
+        .command('load')
+        .description('Triggers a Data Load request')
+        .action(async () => {
+            await loadDataRequest()
         })
 
     await program.parseAsync()

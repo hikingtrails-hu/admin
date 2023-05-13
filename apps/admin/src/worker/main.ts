@@ -1,7 +1,18 @@
 import { storage } from '~/storage/storage'
+import { pubsub } from '~/worker/pubsub'
 
 export const startWorker = async () => {
-    console.info('Checking Google Cloud Storage connection…')
     await storage().ensure()
-    setInterval(() => console.log('working'), 5000)
+    console.info('✔ Connected to Google Cloud Storage')
+    await pubsub().ensure()
+    console.info('✔ Connected to Google Pub/Sub')
+    pubsub().listen()
+}
+
+export const loadDataRequest = async () => {
+    await storage().ensure()
+    console.info('✔ Connected to Google Cloud Storage')
+    await pubsub().ensure()
+    console.info('✔ Connected to Google Pub/Sub')
+    await pubsub().publish()
 }

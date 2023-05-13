@@ -6,7 +6,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd "$SCRIPT_DIR/.." || exit 1
 
 DEV_JS=$(cat <<EOF
-    require('dotenv').config()
+    require('dotenv').config({ path: __dirname + '/../../.env' })
     const { run } = require('./src/cli/cli.server')
     void run()
 EOF
