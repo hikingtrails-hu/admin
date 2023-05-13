@@ -50,5 +50,4 @@ init: .env docker
 #	cp .env.example .env
 
 .gcloud/hikingtrails-runtime-service-account-key.json:
-	mkdir -p .gcloud
 	echo $(GCLOUD_RUNTIME_SERVICE_ACCOUNT) | base64 --decode > .gcloud/hikingtrails-runtime-service-account-key.json

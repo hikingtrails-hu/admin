@@ -50,4 +50,6 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
-/.gcloud
+/.gcloud/*
+!/.gcloud/.gitkeep
+
