@@ -45,6 +45,7 @@ jobs:
         run: make .gcloud/hikingtrails-runtime-service-account-key.json
         env:
           GCLOUD_RUNTIME_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_RUNTIME_SERVICE_ACCOUNT }}
+      - run: ls -la .gcloud
       - name: Download build output
         uses: actions/download-artifact@v3
         with:
