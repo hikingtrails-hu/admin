@@ -1,9 +1,8 @@
-import { config } from "dotenv";
+import { config } from 'dotenv'
 config({
-    path: `${__dirname}/../../../.env`
+    path: `${__dirname}/../../../.env`,
 })
 
-import { run } from "~/cli/cli.server";
-
+import { run } from '~/cli/cli.server'
 
 void run()

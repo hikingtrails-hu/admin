@@ -2,10 +2,10 @@ import { Bucket, Storage as CloudStorage } from '@google-cloud/storage'
 import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 import { writeFileSync, rmSync } from 'node:fs'
-import { serverConfig } from "~/config/config.server";
-import { generateTimestampedId } from "~/id/id";
-import { strict as assert } from "node:assert";
-import { setTimeout } from "node:timers/promises";
+import { serverConfig } from '~/config/config.server'
+import { generateTimestampedId } from '~/id/id'
+import { strict as assert } from 'node:assert'
+import { setTimeout } from 'node:timers/promises'
 
 export class Storage {
     private readonly bucket: Bucket
@@ -48,7 +48,7 @@ export class Storage {
     }
 }
 
-let instance: Storage | null  = null
+let instance: Storage | null = null
 
 export const storage = () => {
     if (!instance) {
