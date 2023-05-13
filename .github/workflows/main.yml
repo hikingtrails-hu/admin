@@ -19,6 +19,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: yarn
+      - run: make node_modules
+      - run: node_modules/.bin/turbo link --team $TURBO_TEAM --token $TURBO_TOKEN
       - name: Build
         run: make
       - name: Verify
