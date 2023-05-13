@@ -1,4 +1,5 @@
 import { Command } from 'commander'
+import { startWorker } from '~/worker/main'
 
 export const run = async () => {
     const program = new Command()
@@ -8,9 +9,9 @@ export const run = async () => {
     program
         .command('worker:start')
         .description('Starts Pub/Sub worker')
-        .action(() => {
-            setInterval(() => console.log('Working...'), 10000)
+        .action(async () => {
+            await startWorker()
         })
 
-    program.parse()
+    await program.parseAsync()
 }

@@ -26,15 +26,10 @@ lint: node_modules
 production-deps:
 	yarn workspaces focus --all --production
 
-#deploy: node_modules
-#	$(DOTENV) -e .env.global -e .env -- $(TURBO) run deploy
-
 typecheck: node_modules
 	$(TURBO) run typecheck
 
-
 verify: lint typecheck
-#	$(DOTENV) -e .env.global -e .env -- $(TURBO) run typecheck test
 
 docker:
 	docker-compose up -d
@@ -46,8 +41,8 @@ docker:
 
 init: .env docker
 
-#.env:
-#	cp .env.example .env
+.env:
+	cp .env.example .env
 
 .gcloud/hikingtrails-runtime-service-account-key.json:
 	echo $(GCLOUD_RUNTIME_SERVICE_ACCOUNT) | base64 --decode > .gcloud/hikingtrails-runtime-service-account-key.json

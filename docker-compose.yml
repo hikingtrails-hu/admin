@@ -2,9 +2,13 @@ services:
   storage:
     image: fsouza/fake-gcs-server:latest
     ports:
-      - 5100:5100
+      - 3201:3201
     volumes:
       - gcs_data:/data
-    command: [ "-scheme", "http", "-port", "5100", "-external-url", "http://localhost:5100", "-backend", "memory" ]
+    command: [ "-scheme", "http", "-port", "3201", "-external-url", "http://localhost:3201", "-backend", "memory" ]
+  pubsub:
+    image: getalma/gcp-pubsub-emulator:latest
+    ports:
+      - 3202:8085
 volumes:
   gcs_data:
