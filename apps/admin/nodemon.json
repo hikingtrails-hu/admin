@@ -2,6 +2,6 @@
     "watch": ["src"],
     "ignore": [],
     "ext": "ts,json",
-    "exec": "$TURBO_INVOCATION_DIR/$TSNODE src/console.ts worker:start",
+    "exec": "$TURBO_INVOCATION_DIR/$TSNODE src/console.server.ts worker:start",
     "delay": 500
 }
