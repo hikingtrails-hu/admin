@@ -41,6 +41,10 @@ jobs:
           cache: yarn
       - name: Install production dependencies
         run: make production-deps
+      - name: Create gcloud service account file
+        run: make .gcloud/hikingtrails-runtime-service-account-key.json
+        env:
+          GCLOUD_RUNTIME_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_RUNTIME_SERVICE_ACCOUNT }}
       - name: Download build output
         uses: actions/download-artifact@v3
         with:
