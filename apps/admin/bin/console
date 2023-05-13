@@ -7,7 +7,7 @@ cd "$SCRIPT_DIR/.." || exit 1
 
 DEV_JS=$(cat <<EOF
     require('dotenv').config()
-    const { run } = require('.//src/cli/cli')
+    const { run } = require('./src/cli/cli.server')
     void run()
 EOF
 )
