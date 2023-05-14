@@ -30,9 +30,9 @@ export class Pubsub {
         })
     }
 
-    public async publish() {
+    public async publish(data: unknown) {
         await this.topic.publishMessage({
-            json: { a: 1 },
+            json: data,
         })
     }
 }
