@@ -3,6 +3,7 @@ import { getenv } from '~/env/getenv'
 export const serverConfig = () => ({
     keepEveryNthLocation: Number(getenv('KEEP_EVERY_NTH_LOCATION', '1')),
     keepEveryNthPathNode: Number(getenv('KEEP_EVERY_NTH_PATH_NODE', '1')),
+    triggerLoadOnStart: getenv('TRIGGER_LOAD_ON_START', 'false') === 'true',
     gCloud: {
         initialize: getenv('INITIALIZE_GCLOUD', 'false') === 'true',
         projectName: getenv('GCLOUD_PROJECT', ''),

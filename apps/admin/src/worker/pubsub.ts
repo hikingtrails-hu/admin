@@ -24,7 +24,7 @@ export class Pubsub {
                 message.nack()
             }
         })
-        console.info('✨ listening to Pub/Sub messages')
+        console.info('🌈 listening to Pub/Sub messages')
     }
 
     public async publish(data: unknown) {
