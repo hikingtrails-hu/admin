@@ -8,7 +8,9 @@ export class Pubsub {
 
     constructor() {
         this.config = serverConfig().gCloud
-        const ps = new PubSub({ projectId: this.config.projectName })
+        const ps = new PubSub({
+            projectId: this.config.projectName,
+        })
         this.topic = ps.topic(this.config.pubsubTopic)
         this.subscription = this.topic.subscription(this.config.pubsubSubscription)
     }
@@ -22,12 +24,14 @@ export class Pubsub {
                 message.nack()
             }
         })
+        console.info('✨ listening to Pub/Sub messages')
     }
 
     public async publish(data: unknown) {
         await this.topic.publishMessage({
             json: data,
         })
+        console.info('🏃 Load request triggered')
     }
 }
 
