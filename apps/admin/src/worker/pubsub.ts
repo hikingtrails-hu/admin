@@ -5,13 +5,14 @@ export class Pubsub {
     private config: ReturnType<typeof serverConfig>['gCloud']
     private topic: Topic
     private subscription: Subscription
+    private pubsub: PubSub
 
     constructor() {
         this.config = serverConfig().gCloud
-        const ps = new PubSub({
+        this.pubsub = new PubSub({
             projectId: this.config.projectName,
         })
-        this.topic = ps.topic(this.config.pubsubTopic)
+        this.topic = this.pubsub.topic(this.config.pubsubTopic)
         this.subscription = this.topic.subscription(this.config.pubsubSubscription)
     }
 
@@ -32,6 +33,20 @@ export class Pubsub {
             json: data,
         })
         console.info('🏃 Load request triggered')
+    }
+
+    public async ensure(): Promise<void> {
+        if (this.config.initialize) {
+            const [topicExists] = await this.topic.exists()
+            if (!topicExists) {
+                await this.topic.create()
+            }
+            const [subscriptionExists] = await this.subscription.exists()
+            if (!subscriptionExists) {
+                await this.subscription.create()
+            }
+        }
+        await this.pubsub.getClientConfig()
     }
 }
 
