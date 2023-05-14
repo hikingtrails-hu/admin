@@ -1,7 +1,7 @@
 BIN=node_modules/.bin
 TURBO=$(BIN)/turbo
 TSNODE=${BIN}/ts-node --transpile-only --swc -r alias-hq/init
-
+CONSOLE=apps/admin/bin/console
 export
 
 default: build .dockerignore
@@ -46,3 +46,6 @@ init: .env docker
 
 .gcloud/hikingtrails-runtime-service-account-key.json:
 	echo $(GCLOUD_RUNTIME_SERVICE_ACCOUNT) | base64 --decode > .gcloud/hikingtrails-runtime-service-account-key.json
+
+trigger-load-request:
+	$(CONSOLE) load

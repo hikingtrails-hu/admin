@@ -13,20 +13,10 @@ export class Pubsub {
         this.subscription = this.topic.subscription(this.config.pubsubSubscription)
     }
 
-    public async ensure(): Promise<void> {
-        const [topicExists] = await this.topic.exists()
-        if (this.config.initialize && !topicExists) {
-            await this.topic.create()
-        }
-        const [subscriptionExists] = await this.subscription.exists()
-        if (this.config.initialize && !subscriptionExists) {
-            await this.subscription.create()
-        }
-    }
-
     public listen() {
         this.subscription.on('message', async (message) => {
             console.log(message.data.toString())
+            message.ack()
         })
     }
 
