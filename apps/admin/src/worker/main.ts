@@ -8,7 +8,5 @@ export const startWorker = async () => {
 }
 
 export const loadDataRequest = async () => {
-    await storage().ensure()
-    console.info('✔ Connected to Google Cloud Storage')
     await pubsub().publish({ job: { type: 'BlueTrailDataLoadRequest', data: {} } })
 }

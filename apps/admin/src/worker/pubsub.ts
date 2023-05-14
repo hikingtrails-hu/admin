@@ -1,5 +1,5 @@
 import { serverConfig } from '~/config/config.server'
-import { PubSub, Subscription, Topic } from '@google-cloud/pubsub'
+import { Message, PubSub, Subscription, Topic } from '@google-cloud/pubsub'
 
 export class Pubsub {
     private config: ReturnType<typeof serverConfig>['gCloud']
@@ -14,9 +14,13 @@ export class Pubsub {
     }
 
     public listen() {
-        this.subscription.on('message', async (message) => {
-            console.log(message.data.toString())
-            message.ack()
+        this.subscription.on('message', async (message: Message) => {
+            try {
+                console.log(message.data.toString())
+                message.ack()
+            } catch (err) {
+                message.nack()
+            }
         })
     }
 
